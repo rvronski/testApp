@@ -8,7 +8,7 @@
 import UIKit
 
 protocol PageOneViewModelProcol: ViewModelProtocol {
-    func viewInputDidChange(viewInput: PageOneViewModel.ViewInput)
+//    func viewInputDidChange(viewInput: PageOneViewModel.ViewInput)
 }
 
 class PageOneViewModel: PageOneViewModelProcol {
@@ -17,11 +17,11 @@ class PageOneViewModel: PageOneViewModelProcol {
     }
     var coordinator: PageOneCoordinator?
     
-    func viewInputDidChange(viewInput: ViewInput) {
-        switch viewInput {
-            
-        case .pushPageTwo:
-            <#code#>
-        }
-    }
+//    func viewInputDidChange(viewInput: ViewInput) {
+//        switch viewInput {
+//            
+//        case .pushPageTwo:
+//            <#code#>
+//        }
+//    }
 }

@@ -8,15 +8,28 @@
 import UIKit
 
 final class AppCoordinator: Coordinatable {
+    
     private(set) var coordinators: [Coordinatable] = []
-    
+    private(set) var module: Module?
     private let factory: AppFactory
-    
-    init(factory: AppFactory) {
+    var navigationController: UINavigationController
+    init(factory: AppFactory, navigationController: UINavigationController ) {
         self.factory = factory
+        self.navigationController = navigationController
     }
 
+    
     func start() -> UIViewController {
+        
+        let module = factory.makeModule(ofType: .login)
+        let viewController = module.view
+        (module.viewModel as! LoginViewModel).coordinator = self
+        self.module = module
+        return viewController
+    }
+    
+    func goToTabBar() {
+       
         let pageOneCoordinator = PageOneCoordinator(moduleType: .home, factory: factory, navigationController: UINavigationController())
         let likeCoordinator = LikeCoordinator(factory: factory, moduleType: .like)
         let cartCoordinator = CartCoordinator(factory: factory, moduleType: .cart)
@@ -33,12 +46,10 @@ final class AppCoordinator: Coordinatable {
         addCoordinator(coordinator: cartCoordinator)
         addCoordinator(coordinator: chatCoordinator)
         addCoordinator(coordinator: profileCoordinator)
-    
         
-        return tabBarController
-        
+        (module!.view as? UINavigationController)?.pushViewController(tabBarController, animated: true)
     }
-
+    
     func addCoordinator(coordinator: Coordinatable) {
         guard coordinators.contains(where: { $0 === coordinator }) else {
             return

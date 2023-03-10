@@ -12,7 +12,10 @@ class AppFactory {
     
     func makeModule(ofType moduleType: Module.ModuleType) -> Module {
         switch moduleType {
-            
+        case .login:
+            let viewModel = LoginViewModel()
+            let view = UINavigationController(rootViewController: LoginViewController(viewModel: viewModel))
+            return Module(moduleType: moduleType, viewModel: viewModel, view: view)
         case .home:
             let viewModel = PageOneViewModel()
             let view = UINavigationController(rootViewController: PageOneViewController())
@@ -33,6 +36,7 @@ class AppFactory {
             let viewModel = ProfileViewModel()
             let view = UINavigationController(rootViewController: ProfileViewController())
             return Module(moduleType: moduleType, viewModel: viewModel, view: view)
+       
         }
     }
 }

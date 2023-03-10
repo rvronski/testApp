@@ -8,7 +8,7 @@
 import UIKit
 
 protocol ProfileViewModelProcol: ViewModelProtocol {
-    func viewInputDidChange(viewInput: ProfileViewModel.ViewInput)
+//    func viewInputDidChange(viewInput: ProfileViewModel.ViewInput)
 }
 
 class ProfileViewModel: ProfileViewModelProcol {
@@ -17,11 +17,11 @@ class ProfileViewModel: ProfileViewModelProcol {
     }
     var coordinator: ProfileCoordinator?
     
-    func viewInputDidChange(viewInput: ViewInput) {
-        switch viewInput {
-            
-        case .pushPageTwo:
-            <#code#>
-        }
-    }
+//    func viewInputDidChange(viewInput: ViewInput) {
+//        switch viewInput {
+//            
+//        case .pushPageTwo:
+//            <#code#>
+//        }
+//    }
 }
