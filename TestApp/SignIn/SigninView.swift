@@ -9,6 +9,7 @@ import UIKit
 
 protocol SigninViewDelegate: AnyObject {
     func signButtonDidTap(email: String, password: String, userName: String)
+    func loginButtonDidTap()
     func showAlert()
 }
 
@@ -31,23 +32,12 @@ class SigninView: UIView {
     private lazy var loginButton = CustomButton(buttonText: "Log in", textColor: .buttonColor, background: nil, fontSize: 14, fontWeight: .bold)
     
     private lazy var googleLabel = InfoLabels(inform: "Sign in with Google", size: 14, weight: .medium, color: .black)
+    
     private lazy var appleLabel = InfoLabels(inform: "Sign in with Apple", size: 14, weight: .medium, color: .black)
     
-    private lazy var googleImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.clipsToBounds = true
-        imageView.image = UIImage(named: "googleLogo")
-        return imageView
-    }()
+    private lazy var googleImageView = CustomImageView(imageName: "googleLogo")
     
-    private lazy var appleImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.clipsToBounds = true
-        imageView.image = UIImage(named: "appleLogo")
-        return imageView
-    }()
+    private lazy var appleImageView = CustomImageView(imageName: "appleLogo")
     
     private lazy var stackView: UIStackView = {
         let stackView = UIStackView()
@@ -72,6 +62,9 @@ class SigninView: UIView {
                 return
             }
             self?.delegate?.signButtonDidTap(email: email, password: password, userName: userName)
+        }
+        loginButton.tapButton = { [weak self] in
+            self?.delegate?.loginButtonDidTap()
         }
     }
     

@@ -33,7 +33,9 @@ class SigninViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+       
         bindViewModel()
+        setupGesture()
     }
     
     func bindViewModel() {
@@ -51,13 +53,36 @@ class SigninViewController: UIViewController {
             }
         }
     }
+    
+    private func setupGesture() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
+        self.view.addGestureRecognizer(tapGesture)
+    }
 
+    @objc private func hideKeyboard() {
+        self.view.endEditing(true)
+    }
+    
 }
 extension SigninViewController: SigninViewDelegate {
     func signButtonDidTap(email: String, password: String, userName: String) {
         viewModel.signInButtonDidTap(email: email, password: password, userName: userName)
     }
+    
+    func loginButtonDidTap() {
+        
+        viewModel.goToLogin()
+    }
+    
     func showAlert() {
         self.alertOk(title: "Заполните все поля регистрации", message: nil)
+
     }
+}
+extension SigninViewController: LoginViewDelegate {
+    func goToTabBar() {
+        viewModel.goToTabBar()
+    }
+
+
 }

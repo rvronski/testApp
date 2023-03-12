@@ -16,9 +16,13 @@ class AppFactory {
     
     func makeModule(ofType moduleType: Module.ModuleType) -> Module {
         switch moduleType {
-        case .login:
+        case.signIn:
             let viewModel = SigninViewModel(networkService: networkService)
             let view = UINavigationController(rootViewController: SigninViewController(viewModel: viewModel))
+            return Module(moduleType: moduleType, viewModel: viewModel, view: view)
+        case .login:
+            let viewModel = SigninViewModel(networkService: networkService)
+            let view = LoginViewController(viewModel: viewModel)
             return Module(moduleType: moduleType, viewModel: viewModel, view: view)
         case .home:
             let viewModel = PageOneViewModel()

@@ -9,19 +9,20 @@ import UIKit
 
 final class AppCoordinator: Coordinatable {
     
+    private let networkService: CheckerServiceProtocol
     private(set) var coordinators: [Coordinatable] = []
     private(set) var module: Module?
     private let factory: AppFactory
     var navigationController: UINavigationController
-    init(factory: AppFactory, navigationController: UINavigationController ) {
+    init(factory: AppFactory, navigationController: UINavigationController, networkService: CheckerServiceProtocol ) {
         self.factory = factory
         self.navigationController = navigationController
+        self.networkService = networkService
     }
 
     
     func start() -> UIViewController {
-        
-        let module = factory.makeModule(ofType: .login)
+        let module = factory.makeModule(ofType: .signIn)
         let viewController = module.view
         (module.viewModel as! SigninViewModel).coordinator = self
         self.module = module
@@ -57,6 +58,22 @@ final class AppCoordinator: Coordinatable {
         coordinators.append(coordinator)
     }
 
+    func startLogin() -> UIViewController {
+        let module = factory.makeModule(ofType: .login)
+        let viewController = module.view
+        (module.viewModel as! SigninViewModel).coordinator = self
+        self.module = module
+        return viewController
+    }
+    
+    func goToLogin() {
+        let viewModel = SigninViewModel(networkService: networkService)
+        let loginVC = LoginViewController(viewModel: viewModel)
+        let signVC = SigninViewController(viewModel: viewModel)
+        loginVC.delegate = signVC
+        (module!.view as? UINavigationController)?.pushViewController(loginVC, animated: true)
+    }
+    
     func removeCoordinator(coordinator: Coordinatable) {
         coordinators = coordinators.filter { $0 === coordinator }
     }

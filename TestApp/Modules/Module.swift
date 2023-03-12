@@ -12,6 +12,7 @@ protocol ViewModelProtocol: AnyObject {}
 struct Module {
     
     enum ModuleType {
+        case signIn
         case login
         case home
         case like
@@ -27,7 +28,9 @@ struct Module {
 extension Module.ModuleType {
     var tabBarItem: UITabBarItem {
         switch self {
-        case.login:
+        case .signIn:
+            fallthrough
+        case .login:
             fallthrough
         case .home:
             return UITabBarItem(title: nil,image: UIImage(systemName: "house"), tag: 0)

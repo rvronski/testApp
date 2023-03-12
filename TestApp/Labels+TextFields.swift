@@ -26,7 +26,7 @@ class InfoLabels: UILabel {
 
 class regTextField: UITextField {
     init(placeholderText: String, typeKeyBoard: UIKeyboardType) {
-        super .init(frame: .zero)
+        super.init(frame: .zero)
         placeholder = placeholderText
         translatesAutoresizingMaskIntoConstraints = false
         textColor = .black
@@ -36,7 +36,6 @@ class regTextField: UITextField {
         textAlignment = .center
         keyboardType = typeKeyBoard
     }
-    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
