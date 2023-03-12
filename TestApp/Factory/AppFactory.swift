@@ -8,13 +8,17 @@
 import UIKit
 
 class AppFactory {
-    
+    private let networkService: CheckerServiceProtocol
+
+    init(networkService: CheckerServiceProtocol) {
+        self.networkService = networkService
+    }
     
     func makeModule(ofType moduleType: Module.ModuleType) -> Module {
         switch moduleType {
         case .login:
-            let viewModel = LoginViewModel()
-            let view = UINavigationController(rootViewController: LoginViewController(viewModel: viewModel))
+            let viewModel = SigninViewModel(networkService: networkService)
+            let view = UINavigationController(rootViewController: SigninViewController(viewModel: viewModel))
             return Module(moduleType: moduleType, viewModel: viewModel, view: view)
         case .home:
             let viewModel = PageOneViewModel()

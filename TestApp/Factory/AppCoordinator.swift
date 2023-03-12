@@ -23,7 +23,7 @@ final class AppCoordinator: Coordinatable {
         
         let module = factory.makeModule(ofType: .login)
         let viewController = module.view
-        (module.viewModel as! LoginViewModel).coordinator = self
+        (module.viewModel as! SigninViewModel).coordinator = self
         self.module = module
         return viewController
     }
