@@ -17,10 +17,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
         self.window = UIWindow(windowScene: windowScene)
-        let networkService = CheckerService()
-        let factory = AppFactory(networkService: networkService)
+        
+        let factory = AppFactory(coreDataManager: CoreDataManager())
         let navigationCon = UINavigationController.init()
-        let appCoordinator = AppCoordinator(factory: factory, navigationController: navigationCon, networkService: networkService)
+        let appCoordinator = AppCoordinator(factory: factory, navigationController: navigationCon, coreDataManager: CoreDataManager())
         self.appcoordinator = appCoordinator
         
         self.window?.rootViewController = appCoordinator.start()
@@ -57,7 +57,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // to restore the scene back to its current state.
 
         // Save changes in the application's managed object context when the application transitions to the background.
-        (UIApplication.shared.delegate as? AppDelegate)?.saveContext()
+       
     }
 
 

@@ -11,7 +11,8 @@ protocol SigninViewModelProtocol: ViewModelProtocol {
     var onStateDidChange: ((SigninViewModel.State) -> Void)? { get set }
     func goToTabBar()
     func goToLogin()
-    func signInButtonDidTap(email: String, password: String, userName: String)
+    func signInButtonDidTap(email: String, firstName: String, lastName: String)
+    func loginButtonDidTap(firstName: String, password: String)
 }
 
 class SigninViewModel: SigninViewModelProtocol {
@@ -19,6 +20,8 @@ class SigninViewModel: SigninViewModelProtocol {
     enum State {
         case initial
         case succsess
+        case userNotFound
+        case wrongPassword
         case fail
     }
     
@@ -30,29 +33,48 @@ class SigninViewModel: SigninViewModelProtocol {
         }
     }
     
-    weak var coordinator: AppCoordinator!
+     var coordinator: AppCoordinator!
     
-    private let networkService: CheckerServiceProtocol
-    
-    init(networkService: CheckerServiceProtocol) {
-        self.networkService = networkService
+    private let coreDataManager: CoreDataManagerProtocol
+
+    init(coreDataManager: CoreDataManagerProtocol) {
+        self.coreDataManager = coreDataManager
     }
     
-    func signInButtonDidTap(email: String, password: String, userName: String) {
-        networkService.signUp(email: email, password: password, userName: userName) { [weak self] result in
-            if result {
-                self?.state = .succsess
-            } else {
-                self?.state = .fail
+    func signInButtonDidTap(email: String, firstName: String, lastName: String) {
+        coreDataManager.createUser(email: email, firstName: firstName, lastName: lastName) { [weak self] result in
+            DispatchQueue.main.async {
+                switch result {
+                case true:
+                    self?.state = .succsess
+                case false:
+                    self?.state = .fail
+                }
             }
         }
     }
+    func loginButtonDidTap(firstName: String, password: String) {
+        coreDataManager.getUser(firstName: firstName) { [weak self] user in
+            guard let user else { self?.state = .userNotFound
+                return
+            }
+            if user.email == password {
+                DispatchQueue.main.async {
+                    self?.goToTabBar()
+                }
+            } else {
+                self?.state = .wrongPassword
+            }
+        }
+    }
+    
+    
     func goToTabBar(){
-        coordinator.goToTabBar()
+        coordinator.goTo(viewModel: self, pushTo: .tabBar)
     }
     
     func goToLogin() {
-        coordinator.goToLogin()
+        coordinator.goTo(viewModel: self, pushTo: .loginVC(self))
     }
     
 }

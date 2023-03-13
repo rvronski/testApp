@@ -8,25 +8,25 @@
 import UIKit
 
 class AppFactory {
-    private let networkService: CheckerServiceProtocol
+    private let coreDataManager: CoreDataManagerProtocol
 
-    init(networkService: CheckerServiceProtocol) {
-        self.networkService = networkService
+    init(coreDataManager: CoreDataManagerProtocol) {
+        self.coreDataManager = coreDataManager
     }
     
     func makeModule(ofType moduleType: Module.ModuleType) -> Module {
         switch moduleType {
         case.signIn:
-            let viewModel = SigninViewModel(networkService: networkService)
+            let viewModel = SigninViewModel(coreDataManager: coreDataManager)
             let view = UINavigationController(rootViewController: SigninViewController(viewModel: viewModel))
             return Module(moduleType: moduleType, viewModel: viewModel, view: view)
         case .login:
-            let viewModel = SigninViewModel(networkService: networkService)
+            let viewModel = SigninViewModel(coreDataManager: coreDataManager)
             let view = LoginViewController(viewModel: viewModel)
             return Module(moduleType: moduleType, viewModel: viewModel, view: view)
         case .home:
             let viewModel = PageOneViewModel()
-            let view = UINavigationController(rootViewController: PageOneViewController())
+            let view = UINavigationController(rootViewController: PageOneViewController(viewModel: viewModel))
             return Module(moduleType: moduleType, viewModel: viewModel, view: view)
         case .like:
             let viewModel = LikeViewModel()
@@ -42,7 +42,7 @@ class AppFactory {
             return Module(moduleType: moduleType, viewModel: viewModel, view: view)
         case .profile:
             let viewModel = ProfileViewModel()
-            let view = UINavigationController(rootViewController: ProfileViewController())
+            let view = UINavigationController(rootViewController: ProfileViewController(viewModel: viewModel))
             return Module(moduleType: moduleType, viewModel: viewModel, view: view)
        
         }

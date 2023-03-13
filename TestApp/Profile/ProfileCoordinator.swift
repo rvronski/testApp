@@ -30,6 +30,9 @@ class ProfileCoordinator: ModuleCoordinatable {
         return viewController
     }
     
-    
+    func popToLogin() {
+        module?.view.navigationController?.popToRootViewController(animated: true)
+        
+    }
 }
 

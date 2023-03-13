@@ -11,7 +11,7 @@ protocol Coordinatable: AnyObject {
     
     var coordinators: [Coordinatable] { get }
     func addCoordinator(coordinator: Coordinatable)
-    func removeCoordinator(coordinator: Coordinatable)
+    func removeCoordinator()
     func start() -> UIViewController
 }
 
@@ -22,5 +22,5 @@ protocol ModuleCoordinatable: Coordinatable {
 
 extension Coordinatable {
     func addCoordinator(coordinator: Coordinatable) {}
-    func removeCoordinator(coordinator: Coordinatable) {}
+    func removeCoordinator() {}
 }

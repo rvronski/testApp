@@ -8,20 +8,16 @@
 import UIKit
 
 protocol ProfileViewModelProcol: ViewModelProtocol {
-//    func viewInputDidChange(viewInput: ProfileViewModel.ViewInput)
+    func returnToLogin()
 }
 
 class ProfileViewModel: ProfileViewModelProcol {
     enum ViewInput {
         case pushPageTwo
     }
-    var coordinator: ProfileCoordinator?
+    var coordinator: ProfileCoordinator!
     
-//    func viewInputDidChange(viewInput: ViewInput) {
-//        switch viewInput {
-//            
-//        case .pushPageTwo:
-//            <#code#>
-//        }
-//    }
+  func returnToLogin() {
+    coordinator.popToLogin()
+}
 }

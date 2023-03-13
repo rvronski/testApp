@@ -30,5 +30,15 @@ class PageOneCoordinator: ModuleCoordinatable {
         return viewController
     }
     
+    func popToLogin() {
+        let tabBar = self.navigationController.tabBarController
+        module?.view.navigationController?.popToRootViewController(animated: true)
+        
+    }
     
+    
+    func removeCoordinator(coordinator: Coordinatable) {
+        coordinators = coordinators.filter { $0 === coordinator }
+        coordinators.removeAll()
+    }
 }

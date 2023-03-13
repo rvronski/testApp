@@ -36,6 +36,11 @@ class SigninViewController: UIViewController {
        
         bindViewModel()
         setupGesture()
+        setupNavigationBar()
+    }
+    
+    private func setupNavigationBar() {
+        self.navigationController?.isNavigationBarHidden = true
     }
     
     func bindViewModel() {
@@ -49,7 +54,11 @@ class SigninViewController: UIViewController {
             case .succsess:
                 self.viewModel.goToTabBar()
             case .fail:
-                self.alertOk(title: "Что-то пошло не так", message: nil)
+                self.alertOk(title: "Что-то пошло не так", message: "Возможно такой пользователь уже зарегестрирован")
+            case .userNotFound:
+                fallthrough
+            case .wrongPassword:
+                self.alertOk(title: "Неверный пароль", message: nil)
             }
         }
     }
@@ -63,10 +72,14 @@ class SigninViewController: UIViewController {
         self.view.endEditing(true)
     }
     
+    func goTo() {
+        viewModel.goToTabBar()
+    }
+    
 }
 extension SigninViewController: SigninViewDelegate {
-    func signButtonDidTap(email: String, password: String, userName: String) {
-        viewModel.signInButtonDidTap(email: email, password: password, userName: userName)
+    func signButtonDidTap(email: String, firstName: String, lastName: String) {
+        viewModel.signInButtonDidTap(email: email, firstName: firstName, lastName: lastName)
     }
     
     func loginButtonDidTap() {
@@ -81,7 +94,7 @@ extension SigninViewController: SigninViewDelegate {
 }
 extension SigninViewController: LoginViewDelegate {
     func goToTabBar() {
-        viewModel.goToTabBar()
+        self.goTo()
     }
 
 

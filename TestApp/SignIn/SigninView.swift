@@ -8,7 +8,7 @@
 import UIKit
 
 protocol SigninViewDelegate: AnyObject {
-    func signButtonDidTap(email: String, password: String, userName: String)
+    func signButtonDidTap(email: String, firstName: String, lastName: String)
     func loginButtonDidTap()
     func showAlert()
 }
@@ -56,12 +56,12 @@ class SigninView: UIView {
         self.setupView()
         enterButton.tapButton = { [weak self] in
             guard let email = self?.emailTextField.text, !email.isEmpty,
-                  let password = self?.lastNameTextField.text, !password.isEmpty,
-                  let userName = self?.firstNameTextField.text, !userName.isEmpty else {
+                  let firstName = self?.firstNameTextField.text, !firstName.isEmpty,
+                  let lastName = self?.lastNameTextField.text, !lastName.isEmpty else {
                 self?.delegate?.showAlert()
                 return
             }
-            self?.delegate?.signButtonDidTap(email: email, password: password, userName: userName)
+            self?.delegate?.signButtonDidTap(email: email, firstName: firstName, lastName: lastName)
         }
         loginButton.tapButton = { [weak self] in
             self?.delegate?.loginButtonDidTap()
