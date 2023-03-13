@@ -7,13 +7,7 @@
 
 import UIKit
 
-protocol LoginViewDelegate: AnyObject {
-    func goToTabBar()
-}
-
 class LoginViewController: UIViewController {
-    
-    var delegate: LoginViewDelegate?
     
     var viewModel: SigninViewModelProtocol
     
@@ -30,13 +24,13 @@ class LoginViewController: UIViewController {
     
     private lazy var firstNameTextField = regTextField(placeholderText: "First name", typeKeyBoard: .default, isSecureText: false)
     
-    private lazy var passwordTextField = regTextField(placeholderText: "Password", typeKeyBoard: .default, isSecureText: true)
+    private lazy var passwordTextField = UIShowHideTextField()
     
     private lazy var regButton = CustomButton(buttonText: "Login", textColor: .white, background: .buttonColor, fontSize: 20, fontWeight: .bold)
     
     private lazy var signInButton = CustomButton(buttonText: "Sign in", textColor: .buttonColor, background: .clear, fontSize: 14, fontWeight: .bold)
     
-
+   
     private lazy var stackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
@@ -47,7 +41,6 @@ class LoginViewController: UIViewController {
         stackView.addArrangedSubview(self.passwordTextField)
         return stackView
     }()
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -78,13 +71,13 @@ class LoginViewController: UIViewController {
             }
             switch state {
             case .initial:
-               fallthrough
+                print("initial")
             case .succsess:
                 self.viewModel.goToTabBar()
             case .fail:
                 self.alertOk(title: "Что-то пошло не так", message: "Возможно такой пользователь уже зарегестрирован")
             case .userNotFound:
-                self.alertOk(title: "пользователь не найден", message: nil)
+                self.alertOk(title: "Пользователь не найден", message: nil)
             case .wrongPassword:
                 self.alertOk(title: "Неверный пароль", message: nil)
             }
@@ -97,7 +90,7 @@ class LoginViewController: UIViewController {
         self.view.addSubview(stackView)
         self.view.addSubview(regButton)
         self.view.addSubview(signInButton)
-        
+       
         NSLayoutConstraint.activate([
         
             self.welcomeLabel.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
@@ -115,9 +108,7 @@ class LoginViewController: UIViewController {
             
             self.signInButton.topAnchor.constraint(equalTo: self.regButton.bottomAnchor, constant: 17),
             self.signInButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
-        
         ])
-        
     }
 
     private func setupGesture() {
