@@ -20,26 +20,25 @@ class ProfileViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-
-    private lazy var outButton = CustomImageView(imageName: "avatarImage")
+    private lazy var profileView: ProfileView = {
+       let view = ProfileView()
+        return view
+    }()
     
+    override func loadView() {
+        super.loadView()
+        self.view = profileView
+    }
+   
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = .white
-        self.view.addSubview(outButton)
-        
-        NSLayoutConstraint.activate([
-            self.outButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
-            self.outButton.centerYAnchor.constraint(equalTo: self.view.centerYAnchor),
-    
-        ])
-//        outButton.tapButton = {[weak self] in
-//            
-//            self?.viewModel.returnToLogin()
-//            
-//        }
+        setupNavigationBar()
+
     }
 
+    private func setupNavigationBar() {
+        self.navigationItem.title = "Profile"
+    }
 
 
 }

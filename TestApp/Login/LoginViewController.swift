@@ -90,6 +90,8 @@ class LoginViewController: UIViewController {
         self.view.addSubview(stackView)
         self.view.addSubview(regButton)
         self.view.addSubview(signInButton)
+        firstNameTextField.text = "roman"
+        passwordTextField.text = "qwerty"
        
         NSLayoutConstraint.activate([
         

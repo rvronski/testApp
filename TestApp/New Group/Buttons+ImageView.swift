@@ -22,6 +22,7 @@ class CustomButton: UIButton {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+       
     }
     
     @objc private func didTapButton() {
@@ -36,6 +37,23 @@ class CustomImageView: UIImageView {
         translatesAutoresizingMaskIntoConstraints = false
         clipsToBounds = true
         image = UIImage(named: imageName)
+        
+    }
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+}
+
+class CustomSystemImageView: UIImageView {
+    init(systemName: String, color: UIColor) {
+        super.init(frame: .zero)
+        translatesAutoresizingMaskIntoConstraints = false
+        clipsToBounds = true
+        image = UIImage(systemName: systemName)
+        tintColor = color
+        
+        
     }
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

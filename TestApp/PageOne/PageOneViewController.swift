@@ -20,24 +20,15 @@ class PageOneViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-
-    private lazy var outButton = CustomButton(buttonText: "Out", textColor: .black, background: .clear, fontSize: 20, fontWeight: .bold)
+  
+    
+//    override func loadView() {
+//        <#code#>
+//    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = .white
-        self.view.addSubview(outButton)
         
-        NSLayoutConstraint.activate([
-            self.outButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
-            self.outButton.centerYAnchor.constraint(equalTo: self.view.centerYAnchor),
-    
-        ])
-        outButton.tapButton = {[weak self] in
-            
-            self?.viewModel.returnToLogin()
-            
-        }
     }
 
 
