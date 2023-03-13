@@ -11,6 +11,7 @@ protocol SigninViewDelegate: AnyObject {
     func signButtonDidTap(email: String, firstName: String, lastName: String)
     func loginButtonDidTap()
     func showAlert()
+    func showEmailAlert()
 }
 
 class SigninView: UIView {
@@ -19,11 +20,11 @@ class SigninView: UIView {
     
     private lazy var signInLabel = InfoLabels(inform: "Sign in", size: 30, weight: .bold, color: .black)
     
-    private lazy var firstNameTextField = regTextField(placeholderText: "First name", typeKeyBoard: .default)
+    private lazy var firstNameTextField = regTextField(placeholderText: "First name", typeKeyBoard: .default, isSecureText: false)
 
-    private lazy var lastNameTextField = regTextField(placeholderText: "Last name", typeKeyBoard: .default)
+    private lazy var lastNameTextField = regTextField(placeholderText: "Last name", typeKeyBoard: .default, isSecureText: false)
     
-    private lazy var emailTextField = regTextField(placeholderText: "Email", typeKeyBoard: .emailAddress)
+    private lazy var emailTextField = regTextField(placeholderText: "Email", typeKeyBoard: .emailAddress, isSecureText: false)
     
     private lazy var informLabel = InfoLabels(inform: "Already have an account?", size: 12, weight: .light, color: .gray)
     
@@ -61,8 +62,13 @@ class SigninView: UIView {
                 self?.delegate?.showAlert()
                 return
             }
+            guard email.isValidEmail else {
+                self?.delegate?.showEmailAlert()
+                return
+            }
             self?.delegate?.signButtonDidTap(email: email, firstName: firstName, lastName: lastName)
         }
+        
         loginButton.tapButton = { [weak self] in
             self?.delegate?.loginButtonDidTap()
         }

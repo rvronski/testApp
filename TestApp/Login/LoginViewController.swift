@@ -28,9 +28,9 @@ class LoginViewController: UIViewController {
    
     private lazy var welcomeLabel = InfoLabels(inform: "Welcome back", size: 30, weight: .bold, color: .black)
     
-    private lazy var firstNameTextField = regTextField(placeholderText: "First name", typeKeyBoard: .default)
+    private lazy var firstNameTextField = regTextField(placeholderText: "First name", typeKeyBoard: .default, isSecureText: false)
     
-    private lazy var passwordTextField = regTextField(placeholderText: "Password", typeKeyBoard: .default)
+    private lazy var passwordTextField = regTextField(placeholderText: "Password", typeKeyBoard: .default, isSecureText: true)
     
     private lazy var regButton = CustomButton(buttonText: "Login", textColor: .white, background: .buttonColor, fontSize: 20, fontWeight: .bold)
     

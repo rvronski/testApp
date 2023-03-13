@@ -31,7 +31,6 @@ class PageOneCoordinator: ModuleCoordinatable {
     }
     
     func popToLogin() {
-        let tabBar = self.navigationController.tabBarController
         module?.view.navigationController?.popToRootViewController(animated: true)
         
     }

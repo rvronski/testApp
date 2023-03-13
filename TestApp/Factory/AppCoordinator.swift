@@ -37,8 +37,6 @@ final class AppCoordinator: Coordinatable {
             
         case let .loginVC(viewModel):
             let viewControllerToPush = LoginViewController(viewModel: viewModel as! SigninViewModelProtocol)
-            let signVC = SigninViewController(viewModel: viewModel as! SigninViewModelProtocol)
-            viewControllerToPush.delegate = signVC
             (module!.view as? UINavigationController)?.pushViewController(viewControllerToPush, animated: true)
         case .tabBar:
             let pageOneCoordinator = PageOneCoordinator(moduleType: .home, factory: factory, navigationController: UINavigationController())

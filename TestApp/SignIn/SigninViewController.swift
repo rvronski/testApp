@@ -72,10 +72,6 @@ class SigninViewController: UIViewController {
         self.view.endEditing(true)
     }
     
-    func goTo() {
-        viewModel.goToTabBar()
-    }
-    
 }
 extension SigninViewController: SigninViewDelegate {
     func signButtonDidTap(email: String, firstName: String, lastName: String) {
@@ -91,11 +87,8 @@ extension SigninViewController: SigninViewDelegate {
         self.alertOk(title: "Заполните все поля регистрации", message: nil)
 
     }
-}
-extension SigninViewController: LoginViewDelegate {
-    func goToTabBar() {
-        self.goTo()
+    
+    func showEmailAlert() {
+        self.alertOk(title: "Неверный формат email", message: "Проверьте email адрес")
     }
-
-
 }

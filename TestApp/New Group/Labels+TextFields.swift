@@ -25,7 +25,7 @@ class InfoLabels: UILabel {
 }
 
 class regTextField: UITextField {
-    init(placeholderText: String, typeKeyBoard: UIKeyboardType) {
+    init(placeholderText: String, typeKeyBoard: UIKeyboardType, isSecureText: Bool) {
         super.init(frame: .zero)
         placeholder = placeholderText
         translatesAutoresizingMaskIntoConstraints = false
@@ -35,6 +35,7 @@ class regTextField: UITextField {
         autocapitalizationType = .none
         textAlignment = .center
         keyboardType = typeKeyBoard
+        isSecureTextEntry = isSecureText
     }
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

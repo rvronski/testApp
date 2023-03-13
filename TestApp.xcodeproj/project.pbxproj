@@ -41,6 +41,7 @@
 		452DB94F29BD552000D9DEC3 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 452DB94E29BD552000D9DEC3 /* LoginViewController.swift */; };
 		45317F5629BE377500AF2AF0 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45317F5529BE377500AF2AF0 /* CoreDataManager.swift */; };
 		45317F5929BEAD5500AF2AF0 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45317F5829BEAD5500AF2AF0 /* ProfileView.swift */; };
+		45317F5B29BEB93600AF2AF0 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45317F5A29BEB93600AF2AF0 /* String.swift */; };
 		453D78DB29BBF2890042BD7E /* Labels+TextFields.swift in Sources */ = {isa = PBXBuildFile; fileRef = 453D78DA29BBF2890042BD7E /* Labels+TextFields.swift */; };
 		453D78DD29BBF3170042BD7E /* Buttons+ImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 453D78DC29BBF3170042BD7E /* Buttons+ImageView.swift */; };
 /* End PBXBuildFile section */
@@ -82,6 +83,7 @@
 		452DB94E29BD552000D9DEC3 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		45317F5529BE377500AF2AF0 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		45317F5829BEAD5500AF2AF0 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		45317F5A29BEB93600AF2AF0 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		453D78DA29BBF2890042BD7E /* Labels+TextFields.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Labels+TextFields.swift"; sourceTree = "<group>"; };
 		453D78DC29BBF3170042BD7E /* Buttons+ImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Buttons+ImageView.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -119,8 +121,6 @@
 				4529CF6329BA6EAF001C6AD3 /* AppDelegate.swift */,
 				4529CF6529BA6EAF001C6AD3 /* SceneDelegate.swift */,
 				452DB94929BC1DD700D9DEC3 /* Extensions */,
-				453D78DA29BBF2890042BD7E /* Labels+TextFields.swift */,
-				453D78DC29BBF3170042BD7E /* Buttons+ImageView.swift */,
 				4571AEDC29BE0EF500B2CCFC /* SignIn */,
 				4529CFAA29BB8CB9001C6AD3 /* Login */,
 				4529CFA529BB7F31001C6AD3 /* TabBar */,
@@ -230,6 +230,9 @@
 			children = (
 				452DB94A29BC1E7000D9DEC3 /* UIViewController+Alert.swift */,
 				4529CFB129BBE250001C6AD3 /* Color.swift */,
+				453D78DA29BBF2890042BD7E /* Labels+TextFields.swift */,
+				453D78DC29BBF3170042BD7E /* Buttons+ImageView.swift */,
+				45317F5A29BEB93600AF2AF0 /* String.swift */,
 			);
 			name = Extensions;
 			path = "New Group";
@@ -343,6 +346,7 @@
 				4529CF6429BA6EAF001C6AD3 /* AppDelegate.swift in Sources */,
 				4529CF9C29BB7B0A001C6AD3 /* ChatCoordinator.swift in Sources */,
 				4529CF9E29BB7B1C001C6AD3 /* ProfileViewController.swift in Sources */,
+				45317F5B29BEB93600AF2AF0 /* String.swift in Sources */,
 				452DB94F29BD552000D9DEC3 /* LoginViewController.swift in Sources */,
 				4529CFA929BB8CAF001C6AD3 /* SigninViewController.swift in Sources */,
 				452DB94B29BC1E7000D9DEC3 /* UIViewController+Alert.swift in Sources */,
