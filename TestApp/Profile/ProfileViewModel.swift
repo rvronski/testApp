@@ -10,6 +10,7 @@ import UIKit
 protocol ProfileViewModelProcol: ViewModelProtocol {
     func returnToLogin()
     func uploadFoto(delegate: UIViewController)
+    func dismiss()
 }
 
 class ProfileViewModel: ProfileViewModelProcol {
@@ -22,5 +23,7 @@ class ProfileViewModel: ProfileViewModelProcol {
     func uploadFoto(delegate: UIViewController) {
         coordinator.presentImagePicker(delegate: delegate)
     }
-    
+    func dismiss() {
+        coordinator.dismiss()
+    }
 }

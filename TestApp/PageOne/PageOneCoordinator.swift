@@ -32,10 +32,8 @@ class PageOneCoordinator: ModuleCoordinatable {
     
     func popToLogin() {
         module?.view.navigationController?.popToRootViewController(animated: true)
-        
     }
-    
-    
+
     func removeCoordinator(coordinator: Coordinatable) {
         coordinators = coordinators.filter { $0 === coordinator }
         coordinators.removeAll()

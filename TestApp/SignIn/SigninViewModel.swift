@@ -43,19 +43,15 @@ class SigninViewModel: SigninViewModelProtocol {
     
     func signInButtonDidTap(email: String, firstName: String, lastName: String) {
         coreDataManager.createUser(email: email, firstName: firstName, lastName: lastName) { [weak self] result in
-                switch result {
-                case true:
-                    DispatchQueue.main.async {
-                        self?.state = .succsess
-                    }
-                case false:
-                    DispatchQueue.main.async {
-                        self?.state = .fail
-                    }
-                }
+            switch result {
+            case true:
+                self?.state = .succsess
+            case false:
+                self?.state = .fail
             }
-        
+        }
     }
+    
     func loginButtonDidTap(firstName: String, password: String) {
         coreDataManager.getUser(firstName: firstName) { [weak self] user in
             guard let user else { self?.state = .userNotFound

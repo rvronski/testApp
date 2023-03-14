@@ -82,6 +82,6 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
         guard let image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage else { return }
 
         self.profileView.avatarImage.image = image
-        self.dismiss(animated: true)
+        self.viewModel.dismiss()
     }
 }
