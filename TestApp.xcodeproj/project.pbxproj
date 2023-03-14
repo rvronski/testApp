@@ -42,6 +42,8 @@
 		45317F5629BE377500AF2AF0 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45317F5529BE377500AF2AF0 /* CoreDataManager.swift */; };
 		45317F5929BEAD5500AF2AF0 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45317F5829BEAD5500AF2AF0 /* ProfileView.swift */; };
 		45317F5B29BEB93600AF2AF0 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45317F5A29BEB93600AF2AF0 /* String.swift */; };
+		45317F5D29BFDC0100AF2AF0 /* ProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45317F5C29BFDC0000AF2AF0 /* ProfileTableViewCell.swift */; };
+		45317F5F29BFE2FE00AF2AF0 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45317F5E29BFE2FE00AF2AF0 /* Model.swift */; };
 		453D78DB29BBF2890042BD7E /* Labels+TextFields.swift in Sources */ = {isa = PBXBuildFile; fileRef = 453D78DA29BBF2890042BD7E /* Labels+TextFields.swift */; };
 		453D78DD29BBF3170042BD7E /* Buttons+ImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 453D78DC29BBF3170042BD7E /* Buttons+ImageView.swift */; };
 /* End PBXBuildFile section */
@@ -84,6 +86,8 @@
 		45317F5529BE377500AF2AF0 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		45317F5829BEAD5500AF2AF0 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		45317F5A29BEB93600AF2AF0 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
+		45317F5C29BFDC0000AF2AF0 /* ProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewCell.swift; sourceTree = "<group>"; };
+		45317F5E29BFE2FE00AF2AF0 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		453D78DA29BBF2890042BD7E /* Labels+TextFields.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Labels+TextFields.swift"; sourceTree = "<group>"; };
 		453D78DC29BBF3170042BD7E /* Buttons+ImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Buttons+ImageView.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -203,6 +207,8 @@
 			children = (
 				4529CF9D29BB7B1C001C6AD3 /* ProfileViewController.swift */,
 				45317F5829BEAD5500AF2AF0 /* ProfileView.swift */,
+				45317F5C29BFDC0000AF2AF0 /* ProfileTableViewCell.swift */,
+				45317F5E29BFE2FE00AF2AF0 /* Model.swift */,
 				4529CF9F29BB7B31001C6AD3 /* ProfileViewModel.swift */,
 				4529CFA129BB7B40001C6AD3 /* ProfileCoordinator.swift */,
 			);
@@ -340,6 +346,7 @@
 				4529CF9229BB7A3B001C6AD3 /* CartViewModel.swift in Sources */,
 				4529CF8B29BB79EF001C6AD3 /* LikeViewModel.swift in Sources */,
 				4529CF9429BB7A4D001C6AD3 /* CartCoordinator.swift in Sources */,
+				45317F5D29BFDC0100AF2AF0 /* ProfileTableViewCell.swift in Sources */,
 				4529CFAE29BB8CF0001C6AD3 /* SigninViewModel.swift in Sources */,
 				4529CFB229BBE250001C6AD3 /* Color.swift in Sources */,
 				4529CF9A29BB7AC6001C6AD3 /* ChatViewModel.swift in Sources */,
@@ -358,6 +365,7 @@
 				4529CF7C29BA6F8D001C6AD3 /* Module.swift in Sources */,
 				4529CFA029BB7B31001C6AD3 /* ProfileViewModel.swift in Sources */,
 				4529CF6629BA6EAF001C6AD3 /* SceneDelegate.swift in Sources */,
+				45317F5F29BFE2FE00AF2AF0 /* Model.swift in Sources */,
 				4529CFB029BBD8ED001C6AD3 /* SigninView.swift in Sources */,
 				4529CF8129BA752D001C6AD3 /* AppFactory.swift in Sources */,
 				4529CF8629BB7691001C6AD3 /* PageOneCoordinator.swift in Sources */,

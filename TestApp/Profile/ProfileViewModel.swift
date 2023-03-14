@@ -9,15 +9,18 @@ import UIKit
 
 protocol ProfileViewModelProcol: ViewModelProtocol {
     func returnToLogin()
+    func uploadFoto(delegate: UIViewController)
 }
 
 class ProfileViewModel: ProfileViewModelProcol {
-    enum ViewInput {
-        case pushPageTwo
-    }
+    
     var coordinator: ProfileCoordinator!
     
-  func returnToLogin() {
-    coordinator.popToLogin()
-}
+    func returnToLogin() {
+        coordinator.popToLogin()
+    }
+    func uploadFoto(delegate: UIViewController) {
+        coordinator.presentImagePicker(delegate: delegate)
+    }
+    
 }

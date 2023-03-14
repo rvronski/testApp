@@ -32,7 +32,13 @@ class ProfileCoordinator: ModuleCoordinatable {
     
     func popToLogin() {
         module?.view.navigationController?.popToRootViewController(animated: true)
-        
+    }
+    
+    func presentImagePicker(delegate: UIViewController) {
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = delegate as? any UIImagePickerControllerDelegate & UINavigationControllerDelegate
+        imagePicker.allowsEditing = true
+        module?.view.present(imagePicker, animated: true)
     }
 }
 

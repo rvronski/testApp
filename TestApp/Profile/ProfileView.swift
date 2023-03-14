@@ -7,7 +7,13 @@
 
 import UIKit
 
+protocol ProfileViewDelegate: AnyObject {
+    func uploadButtonDidTap()
+}
+
 class ProfileView: UIView {
+    
+    var delegate: ProfileViewDelegate?
     
     lazy var avatarImage = CustomImageView(imageName: "avatarImage")
     
@@ -19,58 +25,27 @@ class ProfileView: UIView {
     
     private lazy var uploadImage = CustomImageView(imageName: "uploadImage")
     
-    private lazy var cardImage = CustomImageView(imageName: "cardImage")
-    private lazy var cardImage1 = CustomImageView(imageName: "cardImage")
-    private lazy var cardImage2 = CustomImageView(imageName: "cardImage")
-    private lazy var cardImage3 = CustomImageView(imageName: "cardImage")
-    private lazy var spinImage = CustomImageView(imageName: "spinImage")
-    private lazy var helpImage = CustomImageView(imageName: "helpImage")
-    private lazy var logoutImage = CustomImageView(imageName: "logoutImage")
-    
-    private lazy var tradeStoreButton = CustomButton(buttonText: "Trade store", textColor: .black, background: nil, fontSize: 20, fontWeight: .bold)
-    private lazy var paymentButton = CustomButton(buttonText: "Payment method", textColor: .black, background: nil, fontSize: 20, fontWeight: .bold)
-    private lazy var balanceButton = CustomButton(buttonText: "Balance", textColor: .black, background: nil, fontSize: 20, fontWeight: .bold)
-    private lazy var tradeButton = CustomButton(buttonText: "Trade history", textColor: .black, background: nil, fontSize: 20, fontWeight: .bold)
-    private lazy var restoreButton = CustomButton(buttonText: "Restore purchase", textColor: .black, background: nil, fontSize: 20, fontWeight: .bold)
-    private lazy var helpButton = CustomButton(buttonText: "Help", textColor: .black, background: nil, fontSize: 20, fontWeight: .bold)
-    private lazy var logoutButton = CustomButton(buttonText: "Log out", textColor: .black, background: nil, fontSize: 20, fontWeight: .bold)
-    
-    private lazy var imageStackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.axis = .vertical
-        stackView.spacing = 25
-        stackView.distribution = .fillEqually
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.addArrangedSubview(self.cardImage)
-        stackView.addArrangedSubview(self.cardImage1)
-        stackView.addArrangedSubview(self.cardImage2)
-        stackView.addArrangedSubview(self.cardImage3)
-        stackView.addArrangedSubview(self.spinImage)
-        stackView.addArrangedSubview(self.helpImage)
-        stackView.addArrangedSubview(self.logoutImage)
-        return stackView
+    private lazy var tableView: UITableView = {
+        let tableView = UITableView(frame: .zero, style: .plain)
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = 50
+        tableView.backgroundColor = .backgroundColor
+        tableView.separatorStyle = .none
+        tableView.isScrollEnabled = false
+        return tableView
     }()
+    
    
-    private lazy var buttonStackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.axis = .vertical
-        stackView.spacing = 50
-        stackView.distribution = .fillEqually
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.addArrangedSubview(self.tradeStoreButton)
-        stackView.addArrangedSubview(self.paymentButton)
-        stackView.addArrangedSubview(self.balanceButton)
-        stackView.addArrangedSubview(self.tradeButton)
-        stackView.addArrangedSubview(self.restoreButton)
-        stackView.addArrangedSubview(self.helpButton)
-        stackView.addArrangedSubview(self.logoutButton)
-        return stackView
-    }()
-    
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
-        setupView() 
+        setupView()
+        uploadButton.tapButton = { [weak self] in
+            self?.delegate?.uploadButtonDidTap()
+        }
+        changeFotoButton.tapButton = { [weak self] in
+            self?.delegate?.uploadButtonDidTap()
+        }
     }
     
     required init?(coder: NSCoder) {
@@ -89,13 +64,11 @@ class ProfileView: UIView {
         self.addSubview(nameLabel)
         self.addSubview(uploadButton)
         self.addSubview(uploadImage)
-        self.addSubview(imageStackView)
-        self.addSubview(buttonStackView)
-       
+        self.addSubview(tableView)
         
         NSLayoutConstraint.activate([
             self.avatarImage.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            self.avatarImage.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 37),
+            self.avatarImage.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 10),
             self.avatarImage.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.16),
             self.avatarImage.heightAnchor.constraint(equalTo: self.avatarImage.widthAnchor),
     
@@ -115,19 +88,19 @@ class ProfileView: UIView {
             self.uploadImage.widthAnchor.constraint(equalTo: self.uploadButton.widthAnchor,multiplier: 0.08),
             self.uploadImage.heightAnchor.constraint(equalTo: self.uploadImage.widthAnchor),
             
-            self.imageStackView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 28),
-            self.imageStackView.topAnchor.constraint(equalTo: self.uploadButton.bottomAnchor, constant: 14),
-            self.cardImage.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.1),
-            self.cardImage.heightAnchor.constraint(equalTo: self.cardImage.widthAnchor),
-            
-            
-            self.buttonStackView.leftAnchor.constraint(equalTo: self.imageStackView.rightAnchor, constant: 7),
-            self.buttonStackView.topAnchor.constraint(equalTo: self.uploadButton.bottomAnchor, constant: 24),
-            
+            self.tableView.topAnchor.constraint(equalTo: self.uploadButton.bottomAnchor, constant: 2),
+            self.tableView.leftAnchor.constraint(equalTo: self.leftAnchor),
+            self.tableView.rightAnchor.constraint(equalTo: self.rightAnchor),
+            self.tableView.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor),
             
         ])
         
     }
     
+    func configureTableView(dataSource: UITableViewDataSource, delegate: UITableViewDelegate) {
+        tableView.dataSource = dataSource
+        tableView.delegate = delegate
+        tableView.register(ProfileTableViewCell.self, forCellReuseIdentifier: "ProfileCell")
+    }
     
 }
