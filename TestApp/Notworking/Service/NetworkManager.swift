@@ -7,16 +7,15 @@
 
 import Foundation
 
-//protocol Network: AnyObject {
-//    associatedtype EndPoint: Codable
-//    func getNowWeather(url: NetworkEnvironment, answer: EndPoint,  completion: @escaping (Codable) -> Void)
-//}
+protocol NetworkProtocol: AnyObject {
+    func getData(apiUrl: NetworkEnvironment, completion: @escaping ([Answer]) -> Void)
+}
 
-class NetworkManager  {
+class NetworkManager: NetworkProtocol  {
 typealias Flash = FlashSaleAnswer
 typealias  Latest = LatestAnswer
     
-    func getNowWeather(apiUrl: NetworkEnvironment, completion: @escaping (Codable) -> Void) {
+    func getData(apiUrl: NetworkEnvironment, completion: @escaping ([Answer]) -> Void) {
         let urlString = apiUrl.rawValue
         guard let url = URL(string: urlString) else {return}
         let session = URLSession(configuration: .default)
@@ -37,11 +36,13 @@ typealias  Latest = LatestAnswer
             do {
                 if apiUrl == .flashSale {
                     let answer = try JSONDecoder().decode(Flash.self, from: data)
-                    completion(answer)
+                    let data = answer.flashSale
+                    completion(data)
                     print(answer)
                 } else {
                     let answer = try JSONDecoder().decode(Latest.self, from: data)
-                    completion(answer)
+                    let data = answer.latest
+                    completion(data)
                     print(answer)
                 }
                

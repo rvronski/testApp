@@ -18,7 +18,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         self.window = UIWindow(windowScene: windowScene)
         
-        let factory = AppFactory(coreDataManager: CoreDataManager())
+        let factory = AppFactory(coreDataManager: CoreDataManager(), networkManager: NetworkManager())
         let navigationCon = UINavigationController.init()
         let appCoordinator = AppCoordinator(factory: factory, navigationController: navigationCon, coreDataManager: CoreDataManager())
         self.appcoordinator = appCoordinator

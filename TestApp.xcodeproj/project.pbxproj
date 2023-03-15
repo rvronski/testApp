@@ -49,6 +49,8 @@
 		45472F7C29C15AA800DC7A2B /* NetworkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45472F7B29C15AA800DC7A2B /* NetworkModel.swift */; };
 		45472F7E29C15B0300DC7A2B /* decodable in Resources */ = {isa = PBXBuildFile; fileRef = 45472F7D29C15B0300DC7A2B /* decodable */; };
 		45472F8029C15D1600DC7A2B /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45472F7F29C15D1600DC7A2B /* NetworkManager.swift */; };
+		45472F8229C2356C00DC7A2B /* MenuCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45472F8129C2356C00DC7A2B /* MenuCollectionViewCell.swift */; };
+		45472F8429C2379200DC7A2B /* PageOneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45472F8329C2379200DC7A2B /* PageOneView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -96,6 +98,8 @@
 		45472F7B29C15AA800DC7A2B /* NetworkModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkModel.swift; sourceTree = "<group>"; };
 		45472F7D29C15B0300DC7A2B /* decodable */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = decodable; path = ../../../.Trash/decodable; sourceTree = "<group>"; };
 		45472F7F29C15D1600DC7A2B /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		45472F8129C2356C00DC7A2B /* MenuCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCollectionViewCell.swift; sourceTree = "<group>"; };
+		45472F8329C2379200DC7A2B /* PageOneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageOneView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -176,6 +180,8 @@
 				4529CF6729BA6EAF001C6AD3 /* PageOneViewController.swift */,
 				4529CF8329BB72D5001C6AD3 /* PageOneViewModel.swift */,
 				4529CF8529BB7691001C6AD3 /* PageOneCoordinator.swift */,
+				45472F8329C2379200DC7A2B /* PageOneView.swift */,
+				45472F8129C2356C00DC7A2B /* MenuCollectionViewCell.swift */,
 			);
 			path = PageOne;
 			sourceTree = "<group>";
@@ -381,6 +387,7 @@
 				4529CF9C29BB7B0A001C6AD3 /* ChatCoordinator.swift in Sources */,
 				4529CF9E29BB7B1C001C6AD3 /* ProfileViewController.swift in Sources */,
 				45317F5B29BEB93600AF2AF0 /* String.swift in Sources */,
+				45472F8229C2356C00DC7A2B /* MenuCollectionViewCell.swift in Sources */,
 				452DB94F29BD552000D9DEC3 /* LoginViewController.swift in Sources */,
 				4529CFA929BB8CAF001C6AD3 /* SigninViewController.swift in Sources */,
 				452DB94B29BC1E7000D9DEC3 /* UIViewController+Alert.swift in Sources */,
@@ -401,6 +408,7 @@
 				4529CF8929BB79D6001C6AD3 /* LikeViewController.swift in Sources */,
 				4529CFA729BB7F44001C6AD3 /* TabBar.swift in Sources */,
 				45317F5929BEAD5500AF2AF0 /* ProfileView.swift in Sources */,
+				45472F8429C2379200DC7A2B /* PageOneView.swift in Sources */,
 				453D78DB29BBF2890042BD7E /* Labels+TextFields.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

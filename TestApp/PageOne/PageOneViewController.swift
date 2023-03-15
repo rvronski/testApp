@@ -20,17 +20,44 @@ class PageOneViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    private lazy var imageView = CustomImageView(imageName: "")
   
+    private lazy var pageOneView: PageOneView = {
+        let view = PageOneView()
+        return view
+    }()
     
-//    override func loadView() {
-//        <#code#>
-//    }
+    
+    override func loadView() {
+        self.view = pageOneView
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = .backgroundColor
+        pageOneView.configureCollectionView(dataSource: self, delegate: self)
     }
 
 
 }
 
+extension PageOneViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        12
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "menuCell", for: indexPath) as! MenuCollectionViewCell
+        
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        let itemWidth = (collectionView.frame.width - 136) / 6
+        let height = 100
+        return CGSize(width: itemWidth, height: 100)
+        
+    }
+    
+}

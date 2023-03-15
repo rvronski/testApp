@@ -8,12 +8,18 @@
 import UIKit
 
 class AppFactory {
+    
+    
     private let coreDataManager: CoreDataManagerProtocol
-
-    init(coreDataManager: CoreDataManagerProtocol) {
+    private let networkManager: NetworkProtocol
+    
+    init(coreDataManager: CoreDataManagerProtocol, networkManager: NetworkProtocol) {
         self.coreDataManager = coreDataManager
+        self.networkManager = networkManager
     }
     
+   
+
     func makeModule(ofType moduleType: Module.ModuleType) -> Module {
         switch moduleType {
         case.signIn:
@@ -25,7 +31,7 @@ class AppFactory {
             let view = LoginViewController(viewModel: viewModel)
             return Module(moduleType: moduleType, viewModel: viewModel, view: view)
         case .home:
-            let viewModel = PageOneViewModel()
+            let viewModel = PageOneViewModel(networkManager: networkManager)
             let view = UINavigationController(rootViewController: PageOneViewController(viewModel: viewModel))
             return Module(moduleType: moduleType, viewModel: viewModel, view: view)
         case .like:

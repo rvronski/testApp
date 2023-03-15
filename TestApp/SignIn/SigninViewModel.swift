@@ -45,9 +45,13 @@ class SigninViewModel: SigninViewModelProtocol {
         coreDataManager.createUser(email: email, firstName: firstName, lastName: lastName) { [weak self] result in
             switch result {
             case true:
-                self?.state = .succsess
+                DispatchQueue.main.async {
+                    self?.goToTabBar()
+                }
             case false:
-                self?.state = .fail
+                DispatchQueue.main.async {
+                    self?.state = .fail
+                }
             }
         }
     }

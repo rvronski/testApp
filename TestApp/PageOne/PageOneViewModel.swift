@@ -8,7 +8,7 @@
 import UIKit
 
 protocol PageOneViewModelProcol: ViewModelProtocol {
-//    func viewInputDidChange(viewInput: PageOneViewModel.ViewInput)
+    func getImage(completion: @escaping (UIImage?) -> ())
     func returnToLogin()
 }
 
@@ -18,12 +18,31 @@ class PageOneViewModel: PageOneViewModelProcol {
     }
     var coordinator: PageOneCoordinator!
     
-    func returnToLogin() {
-       
-        coordinator.popToLogin()
+    private let networkManager: NetworkProtocol
+
+    init(networkManager: NetworkProtocol) {
+        self.networkManager = networkManager
     }
     
     
+    func returnToLogin() {
+        coordinator.popToLogin()
+    }
+    
+    func getImage(completion: @escaping (UIImage?) -> ()) {
+        networkManager.getData(apiUrl: .latest) { result in
+            let dan = result.first as! Latest
+            let latest = dan.imageUrl
+            let url =  URL(string:latest)
+            do {
+                let image = try Data(contentsOf: url!)
+                completion(UIImage(data: image) ?? UIImage(systemName: "person"))
+            } catch {
+                print(error)
+            }
+            
+        }
+    }
 //    func viewInputDidChange(viewInput: ViewInput) {
 //        switch viewInput {
 //            

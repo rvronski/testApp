@@ -49,7 +49,7 @@ class SigninViewController: UIViewController {
             }
             switch state {
             case .initial:
-               fallthrough
+               print("initial")
             case .succsess:
                 DispatchQueue.main.async {
                     self.viewModel.goToTabBar()
