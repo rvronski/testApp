@@ -33,7 +33,6 @@ class SigninViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       
         bindViewModel()
         setupGesture()
         setupNavigationBar()

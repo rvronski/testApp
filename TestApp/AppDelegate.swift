@@ -15,7 +15,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        
+        let _ = NetworkManager().getNowWeather(apiUrl: .latest) { Codable in
+            print(Codable)
+        }
         return true
     }
     
