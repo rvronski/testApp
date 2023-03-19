@@ -19,13 +19,22 @@ class PageOneView: UIView {
     }()
     
     private lazy var menuCollectionView: UICollectionView = {
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.backgroundColor = .backgroundColor
         collectionView.showsHorizontalScrollIndicator = false
         return collectionView
     }()
 
+    private lazy var tableView: UITableView = {
+        let tableView = UITableView(frame: .zero, style: .plain)
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = 50
+        tableView.backgroundColor = .backgroundColor
+        return tableView
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupView()
@@ -39,7 +48,7 @@ class PageOneView: UIView {
         
         self.backgroundColor = .backgroundColor
         self.addSubview(self.menuCollectionView)
-        
+        self.addSubview(self.tableView)
         NSLayoutConstraint.activate([
         
             self.menuCollectionView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor),
@@ -47,10 +56,33 @@ class PageOneView: UIView {
             self.menuCollectionView.leftAnchor.constraint(equalTo: self.leftAnchor),
             self.menuCollectionView.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.15),
             
+            self.tableView.topAnchor.constraint(equalTo: self.menuCollectionView.bottomAnchor),
+            self.tableView.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor),
+            self.tableView.leftAnchor.constraint(equalTo: self.leftAnchor),
+            self.tableView.rightAnchor.constraint(equalTo: self.rightAnchor),
+            
         ])
         
     }
     
+    
+    private func createLayout() -> UICollectionViewLayout {
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.16), heightDimension: .fractionalHeight(1.0))
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10)
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(0.2))
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+        let section = NSCollectionLayoutSection(group: group)
+        let layout = UICollectionViewCompositionalLayout(section: section)
+        layout.configuration.scrollDirection = .horizontal
+        return layout
+    }
+    
+    func configureTableView(dataSource: UITableViewDataSource, delegate: UITableViewDelegate) {
+        tableView.dataSource = dataSource
+        tableView.delegate = delegate
+//        tableView.register(PageOneTableViewCell.self, forCellReuseIdentifier: "Cell")
+    }
     
     func configureCollectionView(dataSource: UICollectionViewDataSource, delegate: UICollectionViewDelegateFlowLayout) {
         menuCollectionView.dataSource = dataSource
@@ -77,3 +109,4 @@ class PageOneView: UIView {
 //
 //
 //])
+

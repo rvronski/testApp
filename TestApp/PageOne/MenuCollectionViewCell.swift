@@ -9,6 +9,8 @@ import UIKit
 
 class MenuCollectionViewCell: UICollectionViewCell {
     
+   static let cellIdentifire = "menuCell"
+    
     private lazy var menuImage = CustomImageView(imageName: "menuRobot")
     
     private lazy var menuLabel = InfoLabels(inform: "Menu", size: 12, weight: .medium, color: .gray)
@@ -23,8 +25,9 @@ class MenuCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setup() {
-        
+    func setup(modelImage: String, modelDescription: String) {
+        self.menuImage.image = UIImage(named: modelImage)
+        self.menuLabel.text = modelDescription
     }
     
     

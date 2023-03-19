@@ -51,6 +51,10 @@
 		45472F8029C15D1600DC7A2B /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45472F7F29C15D1600DC7A2B /* NetworkManager.swift */; };
 		45472F8229C2356C00DC7A2B /* MenuCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45472F8129C2356C00DC7A2B /* MenuCollectionViewCell.swift */; };
 		45472F8429C2379200DC7A2B /* PageOneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45472F8329C2379200DC7A2B /* PageOneView.swift */; };
+		45472F8629C368FB00DC7A2B /* PageOneModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45472F8529C368FB00DC7A2B /* PageOneModel.swift */; };
+		45472F8829C3726500DC7A2B /* PageOneTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45472F8729C3726500DC7A2B /* PageOneTableViewCell.swift */; };
+		45472F8A29C37C9C00DC7A2B /* LatestCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45472F8929C37C9C00DC7A2B /* LatestCollectionViewCell.swift */; };
+		45472F8C29C6007B00DC7A2B /* FlashSaleCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45472F8B29C6007B00DC7A2B /* FlashSaleCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -100,6 +104,10 @@
 		45472F7F29C15D1600DC7A2B /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		45472F8129C2356C00DC7A2B /* MenuCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCollectionViewCell.swift; sourceTree = "<group>"; };
 		45472F8329C2379200DC7A2B /* PageOneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageOneView.swift; sourceTree = "<group>"; };
+		45472F8529C368FB00DC7A2B /* PageOneModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageOneModel.swift; sourceTree = "<group>"; };
+		45472F8729C3726500DC7A2B /* PageOneTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageOneTableViewCell.swift; sourceTree = "<group>"; };
+		45472F8929C37C9C00DC7A2B /* LatestCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LatestCollectionViewCell.swift; sourceTree = "<group>"; };
+		45472F8B29C6007B00DC7A2B /* FlashSaleCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashSaleCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -181,7 +189,11 @@
 				4529CF8329BB72D5001C6AD3 /* PageOneViewModel.swift */,
 				4529CF8529BB7691001C6AD3 /* PageOneCoordinator.swift */,
 				45472F8329C2379200DC7A2B /* PageOneView.swift */,
+				45472F8529C368FB00DC7A2B /* PageOneModel.swift */,
 				45472F8129C2356C00DC7A2B /* MenuCollectionViewCell.swift */,
+				45472F8929C37C9C00DC7A2B /* LatestCollectionViewCell.swift */,
+				45472F8B29C6007B00DC7A2B /* FlashSaleCollectionViewCell.swift */,
+				45472F8729C3726500DC7A2B /* PageOneTableViewCell.swift */,
 			);
 			path = PageOne;
 			sourceTree = "<group>";
@@ -373,6 +385,7 @@
 				45472F8029C15D1600DC7A2B /* NetworkManager.swift in Sources */,
 				4529CFA429BB7E4C001C6AD3 /* AppCoordinator.swift in Sources */,
 				4529CF6829BA6EAF001C6AD3 /* PageOneViewController.swift in Sources */,
+				45472F8829C3726500DC7A2B /* PageOneTableViewCell.swift in Sources */,
 				4529CFA229BB7B40001C6AD3 /* ProfileCoordinator.swift in Sources */,
 				4529CF6E29BA6EAF001C6AD3 /* TestApp.xcdatamodeld in Sources */,
 				4529CF9829BB7AB3001C6AD3 /* ChatViewController.swift in Sources */,
@@ -398,13 +411,16 @@
 				4529CF9029BB7A23001C6AD3 /* CartViewController.swift in Sources */,
 				4529CF7C29BA6F8D001C6AD3 /* Module.swift in Sources */,
 				4529CFA029BB7B31001C6AD3 /* ProfileViewModel.swift in Sources */,
+				45472F8629C368FB00DC7A2B /* PageOneModel.swift in Sources */,
 				45472F7C29C15AA800DC7A2B /* NetworkModel.swift in Sources */,
 				4529CF6629BA6EAF001C6AD3 /* SceneDelegate.swift in Sources */,
 				45317F5F29BFE2FE00AF2AF0 /* Model.swift in Sources */,
 				4529CFB029BBD8ED001C6AD3 /* SigninView.swift in Sources */,
+				45472F8C29C6007B00DC7A2B /* FlashSaleCollectionViewCell.swift in Sources */,
 				4529CF8129BA752D001C6AD3 /* AppFactory.swift in Sources */,
 				4529CF8629BB7691001C6AD3 /* PageOneCoordinator.swift in Sources */,
 				4529CF7E29BA74EE001C6AD3 /* Coordinatable.swift in Sources */,
+				45472F8A29C37C9C00DC7A2B /* LatestCollectionViewCell.swift in Sources */,
 				4529CF8929BB79D6001C6AD3 /* LikeViewController.swift in Sources */,
 				4529CFA729BB7F44001C6AD3 /* TabBar.swift in Sources */,
 				45317F5929BEAD5500AF2AF0 /* ProfileView.swift in Sources */,

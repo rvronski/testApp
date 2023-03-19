@@ -8,7 +8,8 @@
 import UIKit
 
 protocol PageOneViewModelProcol: ViewModelProtocol {
-    func getImage(completion: @escaping (UIImage?) -> ())
+//    func getImage(completion: @escaping (UIImage?) -> ())
+    func getData(networkPath: NetworkEnvironment, complition: @escaping ([Answer]) -> Void)
     func returnToLogin()
 }
 
@@ -27,6 +28,23 @@ class PageOneViewModel: PageOneViewModelProcol {
     
     func returnToLogin() {
         coordinator.popToLogin()
+    }
+    
+    func getData(networkPath: NetworkEnvironment, complition: @escaping ([Answer]) -> Void) {
+        switch networkPath {
+        case .latest:
+            networkManager.getData(apiUrl: .latest) { result  in
+                let latest = result as! [Latest]
+                let arrayLatest = LatestItem.testData(model: latest)
+                complition(arrayLatest)
+            }
+        case .flashSale:
+            networkManager.getData(apiUrl: .flashSale) { result in
+                let flash = result as! [FlashSale]
+                let arrayFlash = FlashSaleItem.testData(model: flash)
+                complition(arrayFlash)
+            }
+        }
     }
     
     func getImage(completion: @escaping (UIImage?) -> ()) {
