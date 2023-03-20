@@ -8,9 +8,6 @@
 import Foundation
 import UIKit
 
-protocol ModelCell: Hashable {
-    
-}
 
 struct PageOneModel {
     var menuImage = ["menuPhone","menuHeadphones","menuGames","menuCar","menuBed","menuRobot","menuPhone","menuHeadphones","menuGames","menuCar","menuBed","menuRobot"]
@@ -19,19 +16,6 @@ struct PageOneModel {
 
 struct CustomImage{
     var image: [UIImageView] = [CustomImageView(imageName: "appleLogo"),CustomImageView(imageName: "appleLogo"),CustomImageView(imageName: "appleLogo"),CustomImageView(imageName: "appleLogo"),CustomImageView(imageName: "appleLogo")]
-}
-
-enum Section: Int, CaseIterable {
-    case menu
-    case latest
-//        case flashSale
-//        case brands
-}
-
-struct ShopSections: Hashable {
-    var type: Section
-    var title: String
-    var items: [LatestItem]
 }
 
 struct LatestItem: Hashable {

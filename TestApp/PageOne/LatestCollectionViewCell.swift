@@ -12,7 +12,7 @@ class LatestCollectionViewCell: UICollectionViewCell {
     static let cellIdentifire = "shopCell"
     
     private lazy var productImage = CustomImageView(imageName: "samsung")
-    private lazy var priceLabel = InfoLabels(inform: "1800 $", size: 9, weight: .bold, color: .white)
+    private lazy var priceLabel = InfoLabels(inform: "1800 $", size: 9, weight: .bold, color: .systemGray4)
     private lazy var nameLabel = InfoLabels(inform: "Samsung Galaxy", size: 10, weight: .bold, color: .white)
     private lazy var categorylabel = InfoLabels(inform: "Phones", size: 5, weight: .bold, color: .black)
     private lazy var categoryView: UIView = {
@@ -66,11 +66,8 @@ class LatestCollectionViewCell: UICollectionViewCell {
         self.productImage.addSubview(self.categoryView)
         self.categoryView.addSubview(self.categorylabel)
         self.productImage.addSubview(self.addButton)
-       
-        self.productImage.layer.borderWidth = 0.5
         self.productImage.layer.cornerRadius = 10
-        self.productImage.layer.borderColor = UIColor.red.cgColor
-        
+        self.productImage.contentMode = .scaleAspectFill
         
         NSLayoutConstraint.activate([
         

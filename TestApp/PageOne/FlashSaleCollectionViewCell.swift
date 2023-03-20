@@ -12,14 +12,24 @@ class FlashSaleCollectionViewCell: UICollectionViewCell {
     static let cellIdentifire = "flashSaleCell"
     
     private lazy var productImage = CustomImageView(imageName: "samsung")
-    private lazy var priceLabel = InfoLabels(inform: "1800 $", size: 10, weight: .bold, color: .white)
-    private lazy var nameLabel = InfoLabels(inform: "Samsung Galaxy", size: 20, weight: .bold, color: .white)
+    private lazy var priceLabel = InfoLabels(inform: "1800 $", size: 10, weight: .bold, color: .systemGray4)
+    private lazy var nameLabel = InfoLabels(inform: "Samsung Galaxy", size: 16, weight: .bold, color: .white)
     private lazy var categorylabel = InfoLabels(inform: "Phones", size: 10, weight: .bold, color: .black)
+    private lazy var discountLabel = InfoLabels(inform: "30%", size: 13, weight: .bold, color: .white)
+    
     private lazy var categoryView: UIView = {
        let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = .gray.withAlphaComponent(0.5)
-        view.layer.cornerRadius = 5
+        view.layer.cornerRadius = 9
+        return view
+    }()
+    
+    private lazy var discountView: UIView = {
+       let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = .systemRed
+        view.layer.cornerRadius = 9
         return view
     }()
     
@@ -63,6 +73,8 @@ class FlashSaleCollectionViewCell: UICollectionViewCell {
         self.priceLabel.text = "$ \(model.price)"
         self.nameLabel.text = model.name
         self.categorylabel.text = model.category
+        self.discountLabel.text = "\(model.discount ?? 0)% off"
+        
         
     }
     
@@ -75,10 +87,11 @@ class FlashSaleCollectionViewCell: UICollectionViewCell {
         self.categoryView.addSubview(self.categorylabel)
         self.productImage.addSubview(self.addButton)
         self.productImage.addSubview(self.likeButton)
-        self.productImage.layer.borderWidth = 0.5
+        self.productImage.addSubview(self.discountView)
+        self.discountView.addSubview(self.discountLabel)
         self.productImage.layer.cornerRadius = 10
-        self.productImage.layer.borderColor = UIColor.red.cgColor
-        
+        self.productImage.contentMode = .scaleAspectFill
+        self.nameLabel.textAlignment = .left
         
         NSLayoutConstraint.activate([
         
@@ -97,6 +110,7 @@ class FlashSaleCollectionViewCell: UICollectionViewCell {
             
             self.nameLabel.topAnchor.constraint(equalTo: self.categoryView.bottomAnchor,constant: 11),
             self.nameLabel.leftAnchor.constraint(equalTo: self.productImage.leftAnchor, constant: 10),
+            self.nameLabel.rightAnchor.constraint(equalTo: self.likeButton.leftAnchor),
             
             self.priceLabel.bottomAnchor.constraint(equalTo: self.productImage.bottomAnchor,constant: -10),
             self.priceLabel.leftAnchor.constraint(equalTo: self.productImage.leftAnchor, constant: 10),
@@ -110,6 +124,14 @@ class FlashSaleCollectionViewCell: UICollectionViewCell {
             self.likeButton.centerYAnchor.constraint(equalTo: self.addButton.centerYAnchor),
             self.likeButton.heightAnchor.constraint(equalTo: self.productImage.widthAnchor, multiplier: 0.140),
             self.likeButton.widthAnchor.constraint(equalTo: self.likeButton.heightAnchor),
+            
+            self.discountView.topAnchor.constraint(equalTo: self.productImage.topAnchor, constant: 7),
+            self.discountView.rightAnchor.constraint(equalTo: self.productImage.rightAnchor, constant: -10),
+            self.discountView.widthAnchor.constraint(equalTo: self.productImage.widthAnchor, multiplier: 0.307),
+            self.discountView.heightAnchor.constraint(equalTo: self.discountView.widthAnchor, multiplier: 0.342),
+            
+            self.discountLabel.centerXAnchor.constraint(equalTo: self.discountView.centerXAnchor),
+            self.discountLabel.centerYAnchor.constraint(equalTo: self.discountView.centerYAnchor),
             
         ])
         
