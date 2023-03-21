@@ -14,7 +14,7 @@ class PageOneViewController: UIViewController {
     var flashSale = [FlashSaleItem]()
     private let model = PageOneModel()
     var viewModel: PageOneViewModelProcol
-    
+   
     init(viewModel: PageOneViewModelProcol) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
@@ -37,12 +37,22 @@ class PageOneViewController: UIViewController {
     }
     
     var dataSource: UICollectionViewDiffableDataSource<Section, Int>! = nil
-    var collectionView: UICollectionView! = nil
+    var shopCollectionView: UICollectionView! = nil
+    
+    private lazy var pageOneView: PageOneView = {
+       let view = PageOneView()
+        view.searchBar.delegate = self
+        return view
+    }()
+    
+    override func loadView() {
+        super.loadView()
+        self.view = pageOneView
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = "App Store"
-        setupView()
+        setupNavigationBar()
         self.activityIndicator.isHidden = false
         self.activityIndicator.startAnimating()
         self.viewModel.getData(networkPath: .latest) { [weak self] result in
@@ -62,17 +72,13 @@ class PageOneViewController: UIViewController {
         }
     }
     
-    private func setupView() {
-        self.view.backgroundColor = .backgroundColor
-        self.view.addSubview(activityIndicator)
+    private func setupNavigationBar() {
+        self.navigationController?.navigationBar.tintColor = .black
+        let leftButton = UIBarButtonItem(image: UIImage(systemName: "text.justify"), style: .done, target: self, action: nil)
+        self.navigationItem.leftBarButtonItem = leftButton
         
-        NSLayoutConstraint.activate([
-            activityIndicator.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
-            activityIndicator.centerYAnchor.constraint(equalTo: self.view.centerYAnchor)
-            
-        ])
     }
-
+    
     private func createLayout() -> UICollectionViewLayout {
         let sectionProvider: UICollectionViewCompositionalLayoutSectionProvider = { (sectionIndex, layoutEnvironment) -> NSCollectionLayoutSection? in
             guard let sectionKind = Section(rawValue: sectionIndex) else { return nil }
@@ -92,17 +98,26 @@ class PageOneViewController: UIViewController {
     }
     
     private func configureHierarchy() {
-        collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: createLayout())
-        collectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        collectionView.backgroundColor = .backgroundColor
-        collectionView.register(MenuCollectionViewCell.self, forCellWithReuseIdentifier: MenuCollectionViewCell.cellIdentifire)
-        collectionView.register(LatestCollectionViewCell.self, forCellWithReuseIdentifier: LatestCollectionViewCell.cellIdentifire)
-        collectionView.register(FlashSaleCollectionViewCell.self, forCellWithReuseIdentifier: FlashSaleCollectionViewCell.cellIdentifire)
-        view.addSubview(collectionView)
+        
+        shopCollectionView = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
+        shopCollectionView.translatesAutoresizingMaskIntoConstraints = false
+        shopCollectionView.backgroundColor = .backgroundColor
+        shopCollectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        shopCollectionView.register(MenuCollectionViewCell.self, forCellWithReuseIdentifier: MenuCollectionViewCell.cellIdentifire)
+        shopCollectionView.register(LatestCollectionViewCell.self, forCellWithReuseIdentifier: LatestCollectionViewCell.cellIdentifire)
+        shopCollectionView.register(FlashSaleCollectionViewCell.self, forCellWithReuseIdentifier: FlashSaleCollectionViewCell.cellIdentifire)
+        view.addSubview(shopCollectionView)
+       
+        NSLayoutConstraint.activate([
+            shopCollectionView.topAnchor.constraint(equalTo: self.pageOneView.bottomAnchor),
+            shopCollectionView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor),
+            shopCollectionView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+            shopCollectionView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor)
+        ])
     }
     
     private func configureDataSource() {
-        dataSource = UICollectionViewDiffableDataSource<Section, Int>(collectionView: collectionView, cellProvider: { (collectionView, indexPath, itemIdentifier) -> UICollectionViewCell in
+        dataSource = UICollectionViewDiffableDataSource<Section, Int>(collectionView: shopCollectionView, cellProvider: { (collectionView, indexPath, itemIdentifier) -> UICollectionViewCell in
             let section = Section(rawValue: indexPath.section)
             switch section {
             case .menu:
@@ -136,7 +151,7 @@ class PageOneViewController: UIViewController {
         }
         
         dataSource.supplementaryViewProvider = { (view, kind, index) in
-            return self.collectionView.dequeueConfiguredReusableSupplementary(
+            return self.shopCollectionView.dequeueConfiguredReusableSupplementary(
                 using: supplementaryRegistration, for: index)
         }
         var snapshot = NSDiffableDataSourceSnapshot<Section, Int>()
@@ -204,4 +219,10 @@ class PageOneViewController: UIViewController {
         return section
     }
     
+}
+extension PageOneViewController: UISearchBarDelegate {
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        
+    }
 }

@@ -103,3 +103,29 @@ class UIShowHideTextField: UITextField {
     }
    
 }
+
+class CustomSearchBar: UISearchBar {
+    init() {
+        super.init(frame: .zero)
+        translatesAutoresizingMaskIntoConstraints = false
+        backgroundImage = UIImage()
+        let searchTextField:UITextField = self.searchTextField
+        searchTextField.textAlignment = .left
+        searchTextField.layer.cornerRadius = 20
+        searchTextField.layer.masksToBounds = true
+        
+        let image:UIImage = UIImage(systemName: "magnifyingglass")!
+        let imageV:UIImageView = UIImageView.init(image: image)
+        searchTextField.rightViewMode = .always
+        searchTextField.rightView = imageV
+        searchTextField.textAlignment = .center
+        searchTextField.placeholder = "What are you looking for?"
+       
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+   
+}

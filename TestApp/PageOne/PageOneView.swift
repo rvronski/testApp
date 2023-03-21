@@ -9,30 +9,17 @@ import UIKit
 
 class PageOneView: UIView {
     
-    private lazy var layout: UICollectionViewFlowLayout = {
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .horizontal
-        layout.minimumLineSpacing = 20
-        layout.minimumInteritemSpacing = 20
-        layout.sectionInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
-        return layout
-    }()
+    let searchBar = CustomSearchBar()
+    lazy var avatarView = CustomImageView(imageName: "avatarImage")
+    private lazy var navigationLabel = InfoLabels(inform: "Trade by", size: 20, weight: .bold, color: .black)
+    private lazy var navigationLabel2 = InfoLabels(inform: "bata", size: 20, weight: .bold, color: .buttonColor)
+    private lazy var locationabel = InfoLabels(inform: "Location", size: 10, weight: .medium, color: .gray)
+    private lazy var arrowImage = CustomSystemImageView(systemName: "chevron.down", color: .black)
     
-    private lazy var menuCollectionView: UICollectionView = {
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.backgroundColor = .backgroundColor
-        collectionView.showsHorizontalScrollIndicator = false
-        return collectionView
-    }()
-
-    private lazy var tableView: UITableView = {
-        let tableView = UITableView(frame: .zero, style: .plain)
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.rowHeight = UITableView.automaticDimension
-        tableView.estimatedRowHeight = 50
-        tableView.backgroundColor = .backgroundColor
-        return tableView
+    private lazy var activityIndicator: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView(style: .large)
+        indicator.translatesAutoresizingMaskIntoConstraints = false
+        return indicator
     }()
     
     override init(frame: CGRect) {
@@ -47,66 +34,41 @@ class PageOneView: UIView {
     private func setupView() {
         
         self.backgroundColor = .backgroundColor
-        self.addSubview(self.menuCollectionView)
-        self.addSubview(self.tableView)
+        self.addSubview(activityIndicator)
+        self.addSubview(searchBar)
+        self.addSubview(avatarView)
+        self.addSubview(navigationLabel)
+        self.addSubview(navigationLabel2)
+        self.addSubview(locationabel)
+        self.addSubview(arrowImage)
+        
         NSLayoutConstraint.activate([
-        
-            self.menuCollectionView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor),
-            self.menuCollectionView.rightAnchor.constraint(equalTo: self.rightAnchor),
-            self.menuCollectionView.leftAnchor.constraint(equalTo: self.leftAnchor),
-            self.menuCollectionView.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.15),
+            activityIndicator.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            activityIndicator.centerYAnchor.constraint(equalTo: self.centerYAnchor),
             
-            self.tableView.topAnchor.constraint(equalTo: self.menuCollectionView.bottomAnchor),
-            self.tableView.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor),
-            self.tableView.leftAnchor.constraint(equalTo: self.leftAnchor),
-            self.tableView.rightAnchor.constraint(equalTo: self.rightAnchor),
+            avatarView.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor),
+            avatarView.rightAnchor.constraint(equalTo: self.rightAnchor, constant:  -50),
+            avatarView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.1),
+            avatarView.heightAnchor.constraint(equalTo: avatarView.widthAnchor),
             
-        ])
-        
-    }
-    
-    
-    private func createLayout() -> UICollectionViewLayout {
-        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.16), heightDimension: .fractionalHeight(1.0))
-        let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10)
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(0.2))
-        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
-        let section = NSCollectionLayoutSection(group: group)
-        let layout = UICollectionViewCompositionalLayout(section: section)
-        layout.configuration.scrollDirection = .horizontal
-        return layout
-    }
-    
-    func configureTableView(dataSource: UITableViewDataSource, delegate: UITableViewDelegate) {
-        tableView.dataSource = dataSource
-        tableView.delegate = delegate
-//        tableView.register(PageOneTableViewCell.self, forCellReuseIdentifier: "Cell")
-    }
-    
-    func configureCollectionView(dataSource: UICollectionViewDataSource, delegate: UICollectionViewDelegateFlowLayout) {
-        menuCollectionView.dataSource = dataSource
-        menuCollectionView.delegate = delegate
-        menuCollectionView.register(MenuCollectionViewCell.self, forCellWithReuseIdentifier: "menuCell")
-    }
-    
-}
-//self.view.backgroundColor = .backgroundColor
-//self.view.addSubview(imageView)
-//viewModel.getImage { image in
-//    guard let image else {return}
-//    DispatchQueue.main.async {
-//        self.imageView.image = image
-//    }
-//}
-//NSLayoutConstraint.activate([
-//
-//    self.imageView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
-//    self.imageView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor),
-//    self.imageView.widthAnchor.constraint(equalToConstant: 200),
-//    self.imageView.heightAnchor.constraint(equalToConstant: 200),
-//    
-//
-//
-//])
+            self.navigationLabel2.centerYAnchor.constraint(equalTo: self.avatarView.centerYAnchor),
+            self.navigationLabel2.rightAnchor.constraint(equalTo: self.avatarView.leftAnchor, constant: -55),
+            self.navigationLabel.centerYAnchor.constraint(equalTo: self.avatarView.centerYAnchor),
+            self.navigationLabel.rightAnchor.constraint(equalTo: self.navigationLabel2.leftAnchor, constant: -6),
+            
+            self.locationabel.topAnchor.constraint(equalTo: self.avatarView.bottomAnchor, constant: 10),
+            self.locationabel.centerXAnchor.constraint(equalTo: self.avatarView.centerXAnchor, constant: -5),
+            
+            self.arrowImage.leftAnchor.constraint(equalTo: self.locationabel.rightAnchor, constant: 4),
+            self.arrowImage.centerYAnchor.constraint(equalTo: self.locationabel.centerYAnchor),
+            self.arrowImage.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.02),
+            self.arrowImage.heightAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.01),
+            
+            searchBar.topAnchor.constraint(equalTo: locationabel.bottomAnchor, constant: 10),
+            searchBar.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.7),
+            searchBar.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            searchBar.heightAnchor.constraint(equalToConstant: 30),
 
+        ])
+    }
+}

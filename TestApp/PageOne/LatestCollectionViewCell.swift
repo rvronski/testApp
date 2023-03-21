@@ -25,29 +25,18 @@ class LatestCollectionViewCell: UICollectionViewCell {
     
     private lazy var addButton: UIButton = {
         let button = UIButton()
-        let image = UIImage.SymbolConfiguration(pointSize: 10, weight: .medium, scale: .large)
-        button.setImage(UIImage(systemName: "plus", withConfiguration: image), for: .normal)
-        button.imageView?.tintColor = .eyes
-        button.backgroundColor = #colorLiteral(red: 0.8983454704, green: 0.9136870503, blue: 0.938336134, alpha: 1)
+        button.setImage(UIImage(named: "addButton"), for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     
-    
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupView()
-        
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        self.addButton.layer.cornerRadius = 12.5
     }
     
     func configure(model: LatestItem) {
