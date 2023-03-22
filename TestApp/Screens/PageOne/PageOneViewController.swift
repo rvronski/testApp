@@ -8,10 +8,10 @@
 import UIKit
 
 class PageOneViewController: UIViewController {
-    
+    var isFirst = true
     static let headerElementKind = "header-element-kind"
     var viewModel: PageOneViewModelProcol
-   
+    
     init(viewModel: PageOneViewModelProcol) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
@@ -20,9 +20,9 @@ class PageOneViewController: UIViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-   
+    
     private lazy var pageOneView: PageOneView = {
-       let view = PageOneView()
+        let view = PageOneView()
         view.searchBar.delegate = self
         return view
     }()
@@ -34,6 +34,7 @@ class PageOneViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupGesture()
         setupNavigationBar()
         pageOneView.activityIndicator.isHidden = false
         pageOneView.activityIndicator.startAnimating()
@@ -60,11 +61,29 @@ class PageOneViewController: UIViewController {
         self.navigationItem.leftBarButtonItem = leftButton
         
     }
+    private func setupGesture() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
+        self.view.addGestureRecognizer(tapGesture)
+    }
     
+    @objc private func hideKeyboard() {
+        self.view.endEditing(true)
+    }
 }
 extension PageOneViewController: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-       
+        if isFirst {
+            if searchBar.searchTextField.isEditing {
+                viewModel.getAutocomplete {
+                    pageOneView.searchBar.tableView?.reloadData()
+                }
+                isFirst = false
+            }
+        }
+        if searchText == "" {
+            pageOneView.searchBar.tableView?.isHidden = true
+        }
+        
     }
 }

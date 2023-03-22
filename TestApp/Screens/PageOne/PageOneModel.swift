@@ -14,6 +14,7 @@ struct PageOneModel {
     var menuDescription = ["Phones","Headphones","Games","Cars","Furniture","Kids","Phones","Headphones","Games","Cars","Furniture","Kids"]
     
     var brandsImage = ["apple","newbalanceLogo","nikeLogo","reeboklogo"]
+    
 }
 
 struct LatestItem: Hashable {

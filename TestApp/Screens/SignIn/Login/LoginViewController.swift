@@ -19,7 +19,7 @@ class LoginViewController: UIViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-   
+    
     private lazy var welcomeLabel = InfoLabels(inform: "Welcome back", size: 30, weight: .bold, color: .black)
     
     private lazy var firstNameTextField = regTextField(placeholderText: "First name", typeKeyBoard: .default, isSecureText: false)
@@ -30,7 +30,7 @@ class LoginViewController: UIViewController {
     
     private lazy var signInButton = CustomButton(buttonText: "Sign in", textColor: .buttonColor, background: .clear, fontSize: 14, fontWeight: .bold)
     
-   
+    
     private lazy var stackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
@@ -90,11 +90,9 @@ class LoginViewController: UIViewController {
         self.view.addSubview(stackView)
         self.view.addSubview(regButton)
         self.view.addSubview(signInButton)
-        firstNameTextField.text = "roman"
-        passwordTextField.text = "qwerty"
-       
-        NSLayoutConstraint.activate([
         
+        NSLayoutConstraint.activate([
+            
             self.welcomeLabel.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
             self.welcomeLabel.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 96),
             
@@ -102,7 +100,7 @@ class LoginViewController: UIViewController {
             self.stackView.topAnchor.constraint(equalTo: self.welcomeLabel.bottomAnchor,constant: 80),
             self.stackView.widthAnchor.constraint(equalTo: self.view.widthAnchor,multiplier: 0.786),
             self.passwordTextField.heightAnchor.constraint(equalTo: self.stackView.widthAnchor, multiplier: 0.1),
-        
+            
             self.regButton.topAnchor.constraint(equalTo: self.stackView.bottomAnchor, constant: 99),
             self.regButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
             self.regButton.widthAnchor.constraint(equalTo: self.stackView.widthAnchor),
@@ -112,12 +110,12 @@ class LoginViewController: UIViewController {
             self.signInButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
         ])
     }
-
+    
     private func setupGesture() {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
         self.view.addGestureRecognizer(tapGesture)
     }
-
+    
     @objc private func hideKeyboard() {
         self.view.endEditing(true)
     }

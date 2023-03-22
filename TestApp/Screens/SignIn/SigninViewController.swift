@@ -55,9 +55,7 @@ class SigninViewController: UIViewController {
                     self.viewModel.goToTabBar()
                 }
             case .fail:
-                DispatchQueue.main.async {
                     self.alertOk(title: "Что-то пошло не так", message: "Возможно такой пользователь уже зарегестрирован")
-                }
             case .userNotFound:
                 fallthrough
             case .wrongPassword:

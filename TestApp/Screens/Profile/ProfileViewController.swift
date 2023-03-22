@@ -83,5 +83,6 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
 
         self.profileView.avatarImage.image = image
         self.viewModel.dismiss()
+        
     }
 }

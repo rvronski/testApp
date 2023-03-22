@@ -8,7 +8,7 @@
 import UIKit
 
 protocol PageOneViewModelProcol: ViewModelProtocol {
-//    func getImage(completion: @escaping (UIImage?) -> ())
+    func getAutocomplete(completion: () -> Void)
     func getData(networkPath: NetworkEnvironment, complition: @escaping ([Answer]) -> Void)
     func returnToLogin()
 }
@@ -20,7 +20,7 @@ class PageOneViewModel: PageOneViewModelProcol {
     var coordinator: PageOneCoordinator!
     
     private let networkManager: NetworkProtocol
-
+    
     init(networkManager: NetworkProtocol) {
         self.networkManager = networkManager
     }
@@ -44,28 +44,19 @@ class PageOneViewModel: PageOneViewModelProcol {
                 let arrayFlash = FlashSaleItem.testData(model: flash)
                 complition(arrayFlash)
             }
+        case .autocomplete:
+            print("nil")
         }
     }
     
-    func getImage(completion: @escaping (UIImage?) -> ()) {
-        networkManager.getData(apiUrl: .latest) { result in
-            let dan = result.first as! Latest
-            let latest = dan.imageUrl
-            let url =  URL(string:latest)
-            do {
-                let image = try Data(contentsOf: url!)
-                completion(UIImage(data: image) ?? UIImage(systemName: "person"))
-            } catch {
-                print(error)
+    func getAutocomplete(completion: () -> Void) {
+        networkManager.getAutocomplete { result in
+            print(result)
+            DispatchQueue.main.async {
+               resultsList.append(contentsOf: result)
             }
-            
+           
         }
+        completion()
     }
-//    func viewInputDidChange(viewInput: ViewInput) {
-//        switch viewInput {
-//            
-//        case .pushPageTwo:
-//            <#code#>
-//        }
-//    }
 }

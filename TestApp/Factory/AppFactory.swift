@@ -18,8 +18,6 @@ class AppFactory {
         self.networkManager = networkManager
     }
     
-   
-
     func makeModule(ofType moduleType: Module.ModuleType) -> Module {
         switch moduleType {
         case.signIn:

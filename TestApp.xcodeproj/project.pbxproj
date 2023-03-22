@@ -145,22 +145,17 @@
 				4529CF6329BA6EAF001C6AD3 /* AppDelegate.swift */,
 				45472F7D29C15B0300DC7A2B /* decodable */,
 				4529CF6529BA6EAF001C6AD3 /* SceneDelegate.swift */,
+				45317F5729BEAA4500AF2AF0 /* CoreDataManger */,
+				4529CFA529BB7F31001C6AD3 /* TabBar */,
 				45317F6029C0D3F900AF2AF0 /* Notworking */,
 				452DB94929BC1DD700D9DEC3 /* Extensions */,
-				4571AEDC29BE0EF500B2CCFC /* SignIn */,
-				4529CFA529BB7F31001C6AD3 /* TabBar */,
-				4529CF8229BA763B001C6AD3 /* PageOne */,
-				4529CF8729BB79B4001C6AD3 /* Like */,
-				4529CF8E29BB7A06001C6AD3 /* Cart */,
-				4529CF9529BB7A6E001C6AD3 /* Chat */,
-				4529CF9629BB7A7B001C6AD3 /* Profile */,
+				45472F9229CB6A1900DC7A2B /* Screens */,
 				4529CF7F29BA7519001C6AD3 /* Factory */,
 				4529CF7A29BA6F6F001C6AD3 /* Modules */,
 				4529CF6929BA6EAF001C6AD3 /* Main.storyboard */,
 				4529CF6F29BA6EB4001C6AD3 /* Assets.xcassets */,
 				4529CF7129BA6EB4001C6AD3 /* LaunchScreen.storyboard */,
 				4529CF7429BA6EB4001C6AD3 /* Info.plist */,
-				45317F5729BEAA4500AF2AF0 /* CoreDataManger */,
 			);
 			path = TestApp;
 			sourceTree = "<group>";
@@ -191,11 +186,7 @@
 				4529CF8529BB7691001C6AD3 /* PageOneCoordinator.swift */,
 				45472F8329C2379200DC7A2B /* PageOneView.swift */,
 				45472F8529C368FB00DC7A2B /* PageOneModel.swift */,
-				45472F8129C2356C00DC7A2B /* MenuCollectionViewCell.swift */,
-				45472F8929C37C9C00DC7A2B /* LatestCollectionViewCell.swift */,
-				45472F8B29C6007B00DC7A2B /* FlashSaleCollectionViewCell.swift */,
-				45472F8D29C7CB5200DC7A2B /* TitleSupplementaryView.swift */,
-				45472F8729C3726500DC7A2B /* BrandCollectionViewCell.swift */,
+				45472F9129CB3A1800DC7A2B /* Cells */,
 			);
 			path = PageOne;
 			sourceTree = "<group>";
@@ -284,18 +275,35 @@
 		45317F6029C0D3F900AF2AF0 /* Notworking */ = {
 			isa = PBXGroup;
 			children = (
-				45317F6329C0D44400AF2AF0 /* Service */,
+				45472F7B29C15AA800DC7A2B /* NetworkModel.swift */,
+				45472F7F29C15D1600DC7A2B /* NetworkManager.swift */,
 			);
 			path = Notworking;
 			sourceTree = "<group>";
 		};
-		45317F6329C0D44400AF2AF0 /* Service */ = {
+		45472F9129CB3A1800DC7A2B /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				45472F7B29C15AA800DC7A2B /* NetworkModel.swift */,
-				45472F7F29C15D1600DC7A2B /* NetworkManager.swift */,
+				45472F8129C2356C00DC7A2B /* MenuCollectionViewCell.swift */,
+				45472F8929C37C9C00DC7A2B /* LatestCollectionViewCell.swift */,
+				45472F8B29C6007B00DC7A2B /* FlashSaleCollectionViewCell.swift */,
+				45472F8D29C7CB5200DC7A2B /* TitleSupplementaryView.swift */,
+				45472F8729C3726500DC7A2B /* BrandCollectionViewCell.swift */,
 			);
-			path = Service;
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		45472F9229CB6A1900DC7A2B /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				4571AEDC29BE0EF500B2CCFC /* SignIn */,
+				4529CF8229BA763B001C6AD3 /* PageOne */,
+				4529CF8729BB79B4001C6AD3 /* Like */,
+				4529CF8E29BB7A06001C6AD3 /* Cart */,
+				4529CF9529BB7A6E001C6AD3 /* Chat */,
+				4529CF9629BB7A7B001C6AD3 /* Profile */,
+			);
+			path = Screens;
 			sourceTree = "<group>";
 		};
 		4571AEDC29BE0EF500B2CCFC /* SignIn */ = {
