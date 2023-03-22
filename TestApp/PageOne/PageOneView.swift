@@ -17,7 +17,7 @@ class PageOneView: UIView {
     private lazy var navigationLabel2 = InfoLabels(inform: "bata", size: 20, weight: .bold, color: .buttonColor)
     private lazy var locationabel = InfoLabels(inform: "Location", size: 10, weight: .medium, color: .gray)
     private lazy var arrowImage = CustomSystemImageView(systemName: "chevron.down", color: .black)
-    
+    private lazy var magnifyingglassImage = CustomSystemImageView(systemName: "magnifyingglass", color: .gray)
     lazy var activityIndicator: UIActivityIndicatorView = {
         let indicator = UIActivityIndicatorView(style: .large)
         indicator.translatesAutoresizingMaskIntoConstraints = false
@@ -35,9 +35,6 @@ class PageOneView: UIView {
     var shopCollectionView: UICollectionView! = nil
     var dataSource: UICollectionViewDiffableDataSource<Section, Int>! = nil
     
-    
-    
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupView()
@@ -46,9 +43,6 @@ class PageOneView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    
-    
     
     private func setupView() {
         
@@ -60,7 +54,8 @@ class PageOneView: UIView {
         self.addSubview(navigationLabel2)
         self.addSubview(locationabel)
         self.addSubview(arrowImage)
-        
+        self.addSubview(magnifyingglassImage)
+    
         NSLayoutConstraint.activate([
             activityIndicator.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             activityIndicator.centerYAnchor.constraint(equalTo: self.centerYAnchor),
@@ -87,6 +82,11 @@ class PageOneView: UIView {
             searchBar.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.7),
             searchBar.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             searchBar.heightAnchor.constraint(equalToConstant: 30),
+            
+            magnifyingglassImage.centerYAnchor.constraint(equalTo: self.searchBar.centerYAnchor),
+            magnifyingglassImage.leadingAnchor.constraint(equalTo: self.searchBar.trailingAnchor),
+            magnifyingglassImage.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.035),
+            magnifyingglassImage.heightAnchor.constraint(equalTo: self.magnifyingglassImage.widthAnchor)
             
         ])
     }
@@ -160,7 +160,6 @@ class PageOneView: UIView {
         <TitleSupplementaryView>(elementKind: PageOneViewController.headerElementKind) {
             (supplementaryView, string, indexPath) in
             let section = Section(rawValue: indexPath.section)
-            let model = PageOneModel()
             switch section {
             case .menu:
                 supplementaryView.label.text = ""

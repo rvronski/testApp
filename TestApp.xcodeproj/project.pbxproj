@@ -36,7 +36,7 @@
 		4529CFA929BB8CAF001C6AD3 /* SigninViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4529CFA829BB8CAF001C6AD3 /* SigninViewController.swift */; };
 		4529CFAE29BB8CF0001C6AD3 /* SigninViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4529CFAD29BB8CEF001C6AD3 /* SigninViewModel.swift */; };
 		4529CFB029BBD8ED001C6AD3 /* SigninView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4529CFAF29BBD8ED001C6AD3 /* SigninView.swift */; };
-		4529CFB229BBE250001C6AD3 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4529CFB129BBE250001C6AD3 /* Color.swift */; };
+		4529CFB229BBE250001C6AD3 /* Color+SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4529CFB129BBE250001C6AD3 /* Color+SearchBar.swift */; };
 		452DB94B29BC1E7000D9DEC3 /* UIViewController+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 452DB94A29BC1E7000D9DEC3 /* UIViewController+Alert.swift */; };
 		452DB94F29BD552000D9DEC3 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 452DB94E29BD552000D9DEC3 /* LoginViewController.swift */; };
 		45317F5629BE377500AF2AF0 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45317F5529BE377500AF2AF0 /* CoreDataManager.swift */; };
@@ -90,7 +90,7 @@
 		4529CFA829BB8CAF001C6AD3 /* SigninViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigninViewController.swift; sourceTree = "<group>"; };
 		4529CFAD29BB8CEF001C6AD3 /* SigninViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigninViewModel.swift; sourceTree = "<group>"; };
 		4529CFAF29BBD8ED001C6AD3 /* SigninView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigninView.swift; sourceTree = "<group>"; };
-		4529CFB129BBE250001C6AD3 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		4529CFB129BBE250001C6AD3 /* Color+SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+SearchBar.swift"; sourceTree = "<group>"; };
 		452DB94A29BC1E7000D9DEC3 /* UIViewController+Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Alert.swift"; sourceTree = "<group>"; };
 		452DB94E29BD552000D9DEC3 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		45317F5529BE377500AF2AF0 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
@@ -263,7 +263,7 @@
 			isa = PBXGroup;
 			children = (
 				452DB94A29BC1E7000D9DEC3 /* UIViewController+Alert.swift */,
-				4529CFB129BBE250001C6AD3 /* Color.swift */,
+				4529CFB129BBE250001C6AD3 /* Color+SearchBar.swift */,
 				453D78DA29BBF2890042BD7E /* Labels+TextFields.swift */,
 				453D78DC29BBF3170042BD7E /* Buttons+ImageView.swift */,
 				45317F5A29BEB93600AF2AF0 /* String.swift */,
@@ -397,7 +397,7 @@
 				4529CF9429BB7A4D001C6AD3 /* CartCoordinator.swift in Sources */,
 				45317F5D29BFDC0100AF2AF0 /* ProfileTableViewCell.swift in Sources */,
 				4529CFAE29BB8CF0001C6AD3 /* SigninViewModel.swift in Sources */,
-				4529CFB229BBE250001C6AD3 /* Color.swift in Sources */,
+				4529CFB229BBE250001C6AD3 /* Color+SearchBar.swift in Sources */,
 				4529CF9A29BB7AC6001C6AD3 /* ChatViewModel.swift in Sources */,
 				4529CF6429BA6EAF001C6AD3 /* AppDelegate.swift in Sources */,
 				4529CF9C29BB7B0A001C6AD3 /* ChatCoordinator.swift in Sources */,
