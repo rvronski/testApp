@@ -12,10 +12,8 @@ import UIKit
 struct PageOneModel {
     var menuImage = ["menuPhone","menuHeadphones","menuGames","menuCar","menuBed","menuRobot","menuPhone","menuHeadphones","menuGames","menuCar","menuBed","menuRobot"]
     var menuDescription = ["Phones","Headphones","Games","Cars","Furniture","Kids","Phones","Headphones","Games","Cars","Furniture","Kids"]
-}
-
-struct CustomImage{
-    var image: [UIImageView] = [CustomImageView(imageName: "appleLogo"),CustomImageView(imageName: "appleLogo"),CustomImageView(imageName: "appleLogo"),CustomImageView(imageName: "appleLogo"),CustomImageView(imageName: "appleLogo")]
+    
+    var brandsImage = ["apple","newbalanceLogo","nikeLogo","reeboklogo"]
 }
 
 struct LatestItem: Hashable {
